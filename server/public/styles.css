@@ -19,3 +19,7 @@
 .black {
   background-color: slategray;
 }
+
+.name-width {
+  width: 50%;
+}
