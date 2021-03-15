@@ -1,3 +1,15 @@
+body {
+  background: linear-gradient(90deg, rgb(85, 85, 85), rgb(22, 59, 96));
+
+}
+
+.cbackground {
+  background: linear-gradient(90deg, rgb(214, 215, 215), rgb(176, 199, 222));
+  border-radius: 3rem;
+  box-shadow: rgb(118, 122, 128) 0px 20px 30px -10px;
+
+}
+
 .nwidth {
   width: 100%;
 }
@@ -26,4 +38,16 @@
 
 .hidden {
   display: none;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
+.input-width {
+  width: 50%
 }
