@@ -1,0 +1,29 @@
+.nwidth {
+  width: 100%;
+}
+
+.navwidth {
+  width: 100%;
+}
+
+.icon-size {
+  font-size: 80px;
+  color: antiquewhite;
+}
+
+.text {
+  font-size: 50px;
+  color: antiquewhite;
+}
+
+.black {
+  background-color: slategray;
+}
+
+.name-width {
+  width: 50%;
+}
+
+.hidden {
+  display: none;
+}

@@ -1,5 +1,6 @@
 import React from 'react';
-import Home from './pages/home';
+import Coin from './pages/coin';
+import Navbar from './components/navbar';
 import parseRoute from './lib/parse-route';
 
 export default class App extends React.Component {
@@ -20,6 +21,9 @@ export default class App extends React.Component {
   }
 
   render() {
-    return <Home />;
+    return <>
+            <Navbar />
+            <Coin />
+           </>;
   }
 }
