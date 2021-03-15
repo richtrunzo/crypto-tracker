@@ -120,6 +120,7 @@ class Coin extends React.Component {
     fetch(`https://api.coingecko.com/api/v3/coins/${this.state.coinId}?tickers=true&market_data=true&community_data=true`, { method: 'GET' })
       .then(res => res.json())
       .then(data => {
+        console.log(data);
         this.setState({ currentCoin: data });
       })
       .then(fetch(`https://api.coingecko.com/api/v3/coins/${this.state.coinId}/market_chart?vs_currency=usd&days=30&interval=daily`, { method: 'GET' })
@@ -166,12 +167,12 @@ class Coin extends React.Component {
           </select>
           </div>
         </div>
-        <div className="d-flex flex-wrap justify-content-center">
+        <div className="d-flex flex-wrap justify-content-center mt-5">
           {this.state.coinsM.map((val, index) => {
-            return <div key={index} id={val.id} className="mx-4 mt-3 mb-3 px-5 border cbackground" onClick={this.toggleCoin}>
-              <p id={val.id} className="text-center">{val.symbol.toUpperCase()}</p>
+            return <div key={index} id={val.id} className="mx-4 mt-3 mb-3 px-5 cbackground" onClick={this.toggleCoin}>
+              <p id={val.id} className="text-center white-text">{val.symbol.toUpperCase()}</p>
               <img id={val.id} className="mx-auto" src={val.image} width="100" height="100" />
-              <p className="text-center mt-1">{(val.current_price).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
+              <p className="text-center mt-1 white-text">{(val.current_price).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
             </div>;
           }) }
         </div>
@@ -193,12 +194,12 @@ class Coin extends React.Component {
           </select>
           </div>
         </div>
-        <div className="d-flex flex-wrap justify-content-center">
+        <div className="d-flex flex-wrap justify-content-center mt-5">
           {this.state.coinsV.map((val, index) => {
-            return <div key={index} id={val.id} className="mx-4 mt-3 mb-3 px-5 border cbackground" onClick={this.toggleCoin}>
-              <p className="text-center" id={val.id} onClick={this.toggleCoin}>{val.symbol.toUpperCase()}</p>
+            return <div key={index} id={val.id} className="mx-4 mt-3 mb-3 px-5 cbackground" onClick={this.toggleCoin}>
+              <p className="text-center white-text" id={val.id} onClick={this.toggleCoin}>{val.symbol.toUpperCase()}</p>
               <img className="mx-auto" src={val.image} width="100"/>
-              <p className="text-center">{(val.current_price).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
+              <p className="text-center white-text">{(val.current_price).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
             </div>;
           }) }
         </div>;
@@ -207,15 +208,15 @@ class Coin extends React.Component {
 
   renderCoin() {
     return <div>
-            <div className="d-flex" onClick={this.back}>
-              <i className="far fa-caret-square-left" onClick={this.back}></i>
+            <div className="d-flex mt-5" onClick={this.back}>
+              <i className="far fa-caret-square-left back-btn ms-5" onClick={this.back}></i>
               <p onClick={this.back}>Go Back</p>
             </div>
-            <div className="d-flex">
+            <div className="d-flex justify-content-center mt-4">
               <div>
                 <img src={this.state.currentCoin.image.large}/>
               </div>
-            <div>
+            <div className="ms-5">
               <h2>{this.state.currentCoin.name} <span>{ `(${this.state.currentCoin.symbol.toUpperCase()})`}</span></h2>
               <p>Current Price: {(this.state.currentCoin.market_data.current_price.usd).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
               <p>24 Hour Change: {(this.state.currentCoin.market_data.price_change_24h_in_currency.usd).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
@@ -223,10 +224,10 @@ class Coin extends React.Component {
               <p>Market Cap: {(this.state.currentCoin.market_data.market_cap.usd).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
             </div>
           </div>
-          <div>
+          <div className="mx-auto width-70">
             <p dangerouslySetInnerHTML={{ __html: this.state.currentCoin.description.en }}></p>
           </div>
-          <div className="d-flex justify-content-center">
+          <div className="d-flex justify-content-center mx-auto width-75">
             <Line data={lineData} />
           </div>
         </div>;
