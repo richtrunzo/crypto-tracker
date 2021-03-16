@@ -5,15 +5,15 @@ function Navbar(props) {
     <div className="d-flex nwidth black">
       <div className="navwidth pt-5 text-center">
         <div className="d-flex ms-4">
-          <i className="fab fa-bitcoin icon-size"></i>
+          <a href="#"><i className="fab fa-bitcoin icon-size"></i></a>
           <p className="text ms-2">Crypto Tracker</p>
         </div>
       </div>
       <div>
       </div>
       <div className="navwidth text-center pt-5 d-flex justify-content-around">
-        <p className="text mb-5">Coins</p>
-        <p className="text mb-5">News</p>
+        <a href="#"><p className="text mb-5">Coins</p></a>
+        <a href="#news"><p className="text mb-5">News</p></a>
       </div>
     </div>
   </div>;

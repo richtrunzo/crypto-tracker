@@ -2,12 +2,12 @@ import React from 'react';
 import Coin from './pages/coin';
 import Navbar from './components/navbar';
 import parseRoute from './lib/parse-route';
+import News from './pages/news';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null,
       route: parseRoute(window.location.hash)
     };
   }
@@ -20,10 +20,21 @@ export default class App extends React.Component {
     });
   }
 
-  render() {
-    return <>
-            <Navbar />
-            <Coin />
+  renderPage() {
+    if (this.state.route.path === '') {
+      return <>
+              <Navbar />
+              <Coin />
            </>;
+    } else if (this.state.route.path === 'news') {
+      return <>
+              <Navbar />
+              <News />
+           </>;
+    }
+  }
+
+  render() {
+    return this.renderPage();
   }
 }

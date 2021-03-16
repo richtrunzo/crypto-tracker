@@ -49,13 +49,14 @@ class Coin extends React.Component {
   }
 
   componentDidMount() {
-    fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=200&page=1&sparkline=false', { method: 'GET' })
+
+    fetch('/api/market', { method: 'GET' })
       .then(res => res.json())
       .then(data => {
         this.setState({ coinsM: data });
       });
 
-    fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=volume_desc&per_page=200&page=1&sparkline=true', { method: 'GET' })
+    fetch('/api/volume', { method: 'GET' })
       .then(res => res.json())
       .then(data => {
         this.setState({ coinsV: data });
@@ -78,15 +79,17 @@ class Coin extends React.Component {
   toggleCoin() {
     this.setState({ coinId: event.target.id });
     lineData.datasets[0].label = event.target.id + ' one month chart';
-    fetch(`https://api.coingecko.com/api/v3/coins/${event.target.id}?tickers=true&market_data=true&community_data=true`, { method: 'GET' })
+
+    const coin = event.target.id;
+
+    fetch(`/api/coin/${coin}`, { method: 'GET' })
       .then(res => res.json())
       .then(data => {
         this.setState({ currentCoin: data });
       })
-      .then(fetch(`https://api.coingecko.com/api/v3/coins/${event.target.id}/market_chart?vs_currency=usd&days=30&interval=daily`, { method: 'GET' })
+      .then(fetch(`/api/coins/${coin}`, { method: 'GET' })
         .then(res => res.json())
         .then(data => {
-          console.log(data);
           lineData.labels = [];
           lineData.datasets[0].data = [];
           for (let i = 0; i < data.prices.length; i++) {
@@ -105,7 +108,6 @@ class Coin extends React.Component {
           coinPage: true
         });
       });
-
   }
 
   back() {
