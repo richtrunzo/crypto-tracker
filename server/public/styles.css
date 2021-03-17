@@ -31,6 +31,11 @@ body {
   color: black;
 }
 
+.big-text {
+  font-size: 150px;
+
+}
+
 .black {
   /* background-color: black; */
   backdrop-filter: blur(10px);

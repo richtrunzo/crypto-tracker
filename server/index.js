@@ -41,6 +41,14 @@ app.get('/api/coins/:coin', (req, res) => {
     });
 });
 
+app.get('/api/news', (req, res) => {
+  fetch('https://newsapi.org/v2/everything?q=crypto&sortBy=publishedAt&apiKey=4de66897540141d293573da3a34666a0', { method: 'GET' })
+    .then(res => res.json())
+    .then(data => {
+      res.json(data);
+    });
+});
+
 app.listen(process.env.PORT, () => {
   // eslint-disable-next-line no-console
   console.log(`express server listening on port ${process.env.PORT}`);
