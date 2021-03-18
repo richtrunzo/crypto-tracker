@@ -113,7 +113,6 @@ export default class News extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     if (this.state.allNews === null || this.state.coins === null) {
       return <>
             <div className="mt-5 d-flex justify-content-center">

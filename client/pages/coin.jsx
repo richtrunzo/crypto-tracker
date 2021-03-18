@@ -122,7 +122,6 @@ class Coin extends React.Component {
     fetch(`https://api.coingecko.com/api/v3/coins/${this.state.coinId}?tickers=true&market_data=true&community_data=true`, { method: 'GET' })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         this.setState({ currentCoin: data });
       })
       .then(fetch(`https://api.coingecko.com/api/v3/coins/${this.state.coinId}/market_chart?vs_currency=usd&days=30&interval=daily`, { method: 'GET' })
