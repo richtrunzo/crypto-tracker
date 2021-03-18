@@ -59,6 +59,14 @@ app.get('/api/news/:coin', (req, res) => {
     });
 });
 
+app.get('/api/date', (req, res) => {
+  fetch('https://api.coingecko.com/api/v3/coins/bitcoin/history?date=30-12-2017', { method: 'GET' })
+    .then(res => res.json())
+    .then(data => {
+      res.json(data);
+    });
+});
+
 app.listen(process.env.PORT, () => {
   // eslint-disable-next-line no-console
   console.log(`express server listening on port ${process.env.PORT}`);
