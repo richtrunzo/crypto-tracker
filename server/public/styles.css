@@ -17,6 +17,14 @@ body {
   width: 100%;
 }
 
+.height {
+  height: 75%;
+}
+
+.news-div-width {
+  width: 23%;
+}
+
 .navwidth {
   width: 100%;
 }
@@ -29,6 +37,11 @@ body {
 .text {
   font-size: 50px;
   color: black;
+}
+
+.big-text {
+  font-size: 150px;
+
 }
 
 .black {
