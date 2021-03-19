@@ -59,6 +59,15 @@ app.get('/api/news/:coin', (req, res) => {
     });
 });
 
+app.get('/api/date/:coin/:date', (req, res) => {
+  const { coin, date } = req.params;
+  fetch(`https://api.coingecko.com/api/v3/coins/${coin}/history?date=${date}`, { method: 'GET' })
+    .then(res => res.json())
+    .then(data => {
+      res.json(data.market_data.current_price.usd);
+    });
+});
+
 app.listen(process.env.PORT, () => {
   // eslint-disable-next-line no-console
   console.log(`express server listening on port ${process.env.PORT}`);
