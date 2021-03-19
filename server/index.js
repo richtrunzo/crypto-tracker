@@ -59,11 +59,12 @@ app.get('/api/news/:coin', (req, res) => {
     });
 });
 
-app.get('/api/date', (req, res) => {
-  fetch('https://api.coingecko.com/api/v3/coins/bitcoin/history?date=30-12-2017', { method: 'GET' })
+app.get('/api/date/:coin/:date', (req, res) => {
+  const { coin, date } = req.params;
+  fetch(`https://api.coingecko.com/api/v3/coins/${coin}/history?date=${date}`, { method: 'GET' })
     .then(res => res.json())
     .then(data => {
-      res.json(data);
+      res.json(data.market_data.current_price.usd);
     });
 });
 
