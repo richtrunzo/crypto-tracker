@@ -18,6 +18,7 @@ export default class Fomo extends React.Component {
     this.coinChange = this.coinChange.bind(this);
     this.dateChange = this.dateChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
+    this.reset = this.reset.bind(this);
 
   }
 
@@ -71,6 +72,18 @@ export default class Fomo extends React.Component {
       );
   }
 
+  reset() {
+    this.setState({
+      coins: this.state.coins,
+      calculated: false,
+      investment: null,
+      coin: null,
+      date: null,
+      oldPrice: null,
+      currentCash: null
+    });
+  }
+
   renderI() {
     return <div>
             <div className="mx-auto d-flex justify-content-center flex-column name-width">
@@ -82,7 +95,8 @@ export default class Fomo extends React.Component {
             </div>
             <form className="mx-auto d-flex justify-content-center flex-column name-width" onSubmit={this.onFormSubmit}>
               <input className="mt-3" type="text" placeholder="Initial Investment" onChange={this.investmentChange}></input>
-              <select className="mt-3" onChange={this.coinChange}>
+              <select defaultValue="Choose a Coin" className="mt-3" onChange={this.coinChange}>
+                <option>Choose a Coin</option>
                 {this.state.coins.map((val, index) => {
                   return <option key={index}>{val.name}</option>;
                 })}
@@ -101,7 +115,7 @@ export default class Fomo extends React.Component {
               <p className="text-center">If you invested <span>{(this.state.investment).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</span> in <span>{this.state.coin}</span> on <span>{this.state.date}</span>, you would have <span>{(this.state.currentCash).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</span> today.</p>
             </div>
             <div className="d-flex justify-content-center">
-              <button>Try Again</button>
+              <button onClick={this.reset}>Try Again</button>
             </div>
           </div>;
   }
