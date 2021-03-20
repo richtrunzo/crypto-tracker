@@ -1,4 +1,12 @@
 import React from 'react';
+import {
+  EmailShareButton,
+  FacebookShareButton,
+  LinkedinShareButton,
+  RedditShareButton,
+  TwitterShareButton
+
+} from 'react-share';
 
 export default class News extends React.Component {
   constructor(props) {
@@ -75,10 +83,21 @@ export default class News extends React.Component {
           </form>
           <div className="d-flex flex-column justify-content-center mx-5 mb-4">
             {this.state.allNews.articles.map((val, index) => {
-              return <div key={index} className="col mt-4 border mx-2" >
-                        <p className="text-center">{this.state.allNews.articles[index].source.name}</p>
-                        <img className="mx-" src={this.state.allNews.articles[index].urlToImage} width="300" height="150"/>
-                        <a href={this.state.allNews.articles[index].url}><p className="text-center">{this.state.allNews.articles[index].title}</p></a>
+              return <div key={index} className="col d-flex mt-4 border mx-2 cbackground" >
+                        <div>
+                          <img className="ms-4 mt-4 mb-4 border" src={this.state.allNews.articles[index].urlToImage} width="300" height="150"/>
+                        </div>
+                        <div className="ms-5">
+                          <p className="text-center white-text pt-2">{this.state.allNews.articles[index].source.name}</p>
+                          <a href={this.state.allNews.articles[index].url}><p className="text-center white-text pt-3">{this.state.allNews.articles[index].title}</p></a>
+                          <div className="d-flex">
+                            <EmailShareButton url={this.state.allNews.articles[index].url} />
+                            <FacebookShareButton />
+                            <LinkedinShareButton />
+                            <RedditShareButton />
+                            <TwitterShareButton />
+                          </div>
+                        </div>
                     </div>;
             })}
           </div>
@@ -101,10 +120,14 @@ export default class News extends React.Component {
           </form>
           <div className="d-flex flex-column justify-content-center mx-5 mb-4">
             {this.state.searchNews.articles.map((val, index) => {
-              return <div key={index} className="col mt-4 border mx-2" >
-                        <p className="text-center">{this.state.searchNews.articles[index].source.name}</p>
-                        <img className="mx-" src={this.state.searchNews.articles[index].urlToImage} width="300" height="150"/>
-                        <a href={this.state.searchNews.articles[index].url}><p className="text-center">{this.state.searchNews.articles[index].title}</p></a>
+              return <div key={index} className="col d-flex mt-4 border mx-2 cbackground" >
+                        <div>
+                          <img className="ms-4 mt-4 mb-4 border" src={this.state.searchNews.articles[index].urlToImage} width="300" height="150"/>
+                        </div>
+                        <div className="ms-5">
+                          <p className="text-center white-text pt-2">{this.state.searchNews.articles[index].source.name}</p>
+                          <a href={this.state.searchNews.articles[index].url}><p className="text-center white-text pt-3">{this.state.searchNews.articles[index].title}</p></a>
+                        </div>
                     </div>;
             })}
           </div>
