@@ -4,7 +4,12 @@ import {
   FacebookShareButton,
   LinkedinShareButton,
   RedditShareButton,
-  TwitterShareButton
+  TwitterShareButton,
+  FacebookIcon,
+  TwitterIcon,
+  EmailIcon,
+  LinkedinIcon,
+  RedditIcon
 
 } from 'react-share';
 
@@ -90,12 +95,22 @@ export default class News extends React.Component {
                         <div className="ms-5">
                           <p className="text-center white-text pt-2">{this.state.allNews.articles[index].source.name}</p>
                           <a href={this.state.allNews.articles[index].url}><p className="text-center white-text pt-3">{this.state.allNews.articles[index].title}</p></a>
-                          <div className="d-flex">
-                            <EmailShareButton url={this.state.allNews.articles[index].url} />
-                            <FacebookShareButton />
-                            <LinkedinShareButton />
-                            <RedditShareButton />
-                            <TwitterShareButton />
+                          <div className="d-flex justify-content-center">
+                            <EmailShareButton url={this.state.allNews.articles[index].url}>
+                              <EmailIcon size={32} round/>
+                            </EmailShareButton>
+                            <FacebookShareButton url={this.state.allNews.articles[index].url}>
+                              <FacebookIcon size={32} round/>
+                            </FacebookShareButton>
+                            <LinkedinShareButton url={this.state.allNews.articles[index].url}>
+                              <LinkedinIcon size={32} round/>
+                            </LinkedinShareButton>
+                            <RedditShareButton url={this.state.allNews.articles[index].url}>
+                              <RedditIcon size={32} round/>
+                            </RedditShareButton>
+                            <TwitterShareButton url={this.state.allNews.articles[index].url}>
+                              <TwitterIcon size={32} round/>
+                            </TwitterShareButton>
                           </div>
                         </div>
                     </div>;
