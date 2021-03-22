@@ -92,23 +92,23 @@ export default class News extends React.Component {
                         <div>
                           <img className="ms-4 mt-4 mb-4 border" src={this.state.allNews.articles[index].urlToImage} width="300" height="150"/>
                         </div>
-                        <div className="ms-5">
+                        <div className="ms-5 col-6">
                           <p className="text-center white-text pt-2">{this.state.allNews.articles[index].source.name}</p>
                           <a href={this.state.allNews.articles[index].url}><p className="text-center white-text pt-3">{this.state.allNews.articles[index].title}</p></a>
                           <div className="d-flex justify-content-center">
-                            <EmailShareButton url={this.state.allNews.articles[index].url}>
+                            <EmailShareButton className="mx-2" url={this.state.allNews.articles[index].url}>
                               <EmailIcon size={32} round/>
                             </EmailShareButton>
-                            <FacebookShareButton url={this.state.allNews.articles[index].url}>
+                            <FacebookShareButton className="mx-2" url={this.state.allNews.articles[index].url}>
                               <FacebookIcon size={32} round/>
                             </FacebookShareButton>
-                            <LinkedinShareButton url={this.state.allNews.articles[index].url}>
+                            <LinkedinShareButton className="mx-2" url={this.state.allNews.articles[index].url}>
                               <LinkedinIcon size={32} round/>
                             </LinkedinShareButton>
-                            <RedditShareButton url={this.state.allNews.articles[index].url}>
+                            <RedditShareButton className="mx-2" url={this.state.allNews.articles[index].url}>
                               <RedditIcon size={32} round/>
                             </RedditShareButton>
-                            <TwitterShareButton url={this.state.allNews.articles[index].url}>
+                            <TwitterShareButton className="mx-2" url={this.state.allNews.articles[index].url}>
                               <TwitterIcon size={32} round/>
                             </TwitterShareButton>
                           </div>
@@ -139,9 +139,26 @@ export default class News extends React.Component {
                         <div>
                           <img className="ms-4 mt-4 mb-4 border" src={this.state.searchNews.articles[index].urlToImage} width="300" height="150"/>
                         </div>
-                        <div className="ms-5">
+                        <div className="ms-5 col-6">
                           <p className="text-center white-text pt-2">{this.state.searchNews.articles[index].source.name}</p>
                           <a href={this.state.searchNews.articles[index].url}><p className="text-center white-text pt-3">{this.state.searchNews.articles[index].title}</p></a>
+                          <div className="d-flex justify-content-center">
+                            <EmailShareButton className="mx-2" url={this.state.allNews.articles[index].url}>
+                              <EmailIcon size={32} round/>
+                            </EmailShareButton>
+                            <FacebookShareButton className="mx-2" url={this.state.allNews.articles[index].url}>
+                              <FacebookIcon size={32} round/>
+                            </FacebookShareButton>
+                            <LinkedinShareButton className="mx-2" url={this.state.allNews.articles[index].url}>
+                              <LinkedinIcon size={32} round/>
+                            </LinkedinShareButton>
+                            <RedditShareButton className="mx-2" url={this.state.allNews.articles[index].url}>
+                              <RedditIcon size={32} round/>
+                            </RedditShareButton>
+                            <TwitterShareButton className="mx-2" url={this.state.allNews.articles[index].url}>
+                              <TwitterIcon size={32} round/>
+                            </TwitterShareButton>
+                          </div>
                         </div>
                     </div>;
             })}

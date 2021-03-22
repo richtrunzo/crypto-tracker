@@ -51,7 +51,6 @@ app.get('/api/news', (req, res) => {
 
 app.get('/api/news/:coin', (req, res) => {
   const { coin } = req.params;
-  console.log(coin);
   fetch(`https://newsapi.org/v2/everything?q=${coin}&language=en&sortBy=publishedAt&apiKey=4de66897540141d293573da3a34666a0`, { method: 'GET' })
     .then(res => res.json())
     .then(data => {
