@@ -32,17 +32,14 @@ export default class Fomo extends React.Component {
 
   investmentChange() {
     this.setState({ investment: event.target.value });
-    console.log(this.state);
   }
 
   coinChange() {
     this.setState({ coin: event.target.value });
-    console.log(this.state);
   }
 
   dateChange() {
     this.setState({ date: event.target.value });
-    console.log(this.state);
   }
 
   onFormSubmit(e) {
@@ -57,7 +54,6 @@ export default class Fomo extends React.Component {
       .then(res => res.json())
       .then(data => {
         this.setState({ oldPrice: data });
-        console.log(this.state.oldPrice);
       })
       .then(fetch(`/api/coin/${coin}`, { method: 'GET' })
         .then(res => res.json())
@@ -109,7 +105,6 @@ export default class Fomo extends React.Component {
   }
 
   renderD() {
-    console.log(this.state);
     return <div>
             <div>
               <p className="text-center">If you invested <span>{(this.state.investment).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</span> in <span>{this.state.coin}</span> on <span>{this.state.date}</span>, you would have <span>{(this.state.currentCash).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</span> today.</p>
