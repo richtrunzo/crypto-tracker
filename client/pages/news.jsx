@@ -97,19 +97,19 @@ export default class News extends React.Component {
                           <a href={this.state.allNews.articles[index].url}><p className="text-center white-text pt-3">{this.state.allNews.articles[index].title}</p></a>
                           <div className="d-flex justify-content-center">
                             <EmailShareButton className="mx-2" url={this.state.allNews.articles[index].url}>
-                              <EmailIcon size={32} round/>
+                              <EmailIcon size={35} round/>
                             </EmailShareButton>
                             <FacebookShareButton className="mx-2" url={this.state.allNews.articles[index].url}>
-                              <FacebookIcon size={32} round/>
+                              <FacebookIcon size={35} round/>
                             </FacebookShareButton>
                             <LinkedinShareButton className="mx-2" url={this.state.allNews.articles[index].url}>
-                              <LinkedinIcon size={32} round/>
+                              <LinkedinIcon size={35} round/>
                             </LinkedinShareButton>
                             <RedditShareButton className="mx-2" url={this.state.allNews.articles[index].url}>
-                              <RedditIcon size={32} round/>
+                              <RedditIcon size={35} round/>
                             </RedditShareButton>
                             <TwitterShareButton className="mx-2" url={this.state.allNews.articles[index].url}>
-                              <TwitterIcon size={32} round/>
+                              <TwitterIcon size={35} round/>
                             </TwitterShareButton>
                           </div>
                         </div>
