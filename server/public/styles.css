@@ -3,12 +3,19 @@ body {
 }
 
 .cbackground {
-  /* background: linear-gradient(90deg, rgb(214, 215, 215), rgb(176, 199, 222)); */
   border-radius: 3rem;
   box-shadow: rgb(118, 122, 128) 0px 20px 30px -10px;
   backdrop-filter: blur(10px) brightness(30%);
 
 }
+
+.share-button {
+  width: 5%;
+  border-radius: 1rem;
+
+
+}
+
 .white-text {
   color: whitesmoke;
 }
