@@ -72,6 +72,10 @@ body {
   color: red;
 }
 
+.grey {
+  background-color: slategray;
+}
+
 .input-width {
   width: 50%
 }
