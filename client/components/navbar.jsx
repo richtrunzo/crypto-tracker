@@ -1,4 +1,5 @@
 import React from 'react';
+import Tick from './ticker';
 
 function Navbar(props) {
   return <div>
@@ -17,6 +18,7 @@ function Navbar(props) {
         <a href="#fomo"><p className="text mb-5">FOMO</p></a>
       </div>
     </div>
+    <Tick />
   </div>;
 }
 
