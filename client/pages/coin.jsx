@@ -209,13 +209,15 @@ class Coin extends React.Component {
 
   renderCoin() {
     return <div>
-            <div className="d-flex mt-5" onClick={this.back}>
-              <i className="far fa-caret-square-left back-btn ms-5" onClick={this.back}></i>
-              <p onClick={this.back}>Go Back</p>
+            <div className="d-flex mt-5 mb-5" onClick={this.back}>
+              <p className="ms-5 back-text">Back to coin selection: </p>
+              <button className="ms-5" onClick={this.back}>
+              <i className="far fa-caret-square-left back-btn mx-5" onClick={this.back}></i>
+              </button>
             </div>
             <div className="d-flex justify-content-center mt-4">
               <div>
-                <img src={this.state.currentCoin.image.large}/>
+                <img className="mb-5" src={this.state.currentCoin.image.large}/>
               </div>
             <div className="ms-5">
               <h2>{this.state.currentCoin.name} <span>{ `(${this.state.currentCoin.symbol.toUpperCase()})`}</span></h2>
@@ -228,7 +230,7 @@ class Coin extends React.Component {
           <div className="mx-auto width-70">
             <p dangerouslySetInnerHTML={{ __html: this.state.currentCoin.description.en }}></p>
           </div>
-          <div className="d-flex justify-content-center mx-auto width-75">
+          <div className="d-flex mb-5 justify-content-center mx-auto width-75">
             <Line data={lineData} />
           </div>
         </div>;
