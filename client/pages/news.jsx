@@ -86,16 +86,15 @@ export default class News extends React.Component {
             </select>
             <button>Submit</button>
           </form>
-          <div className="d-flex flex-column justify-content-center mx-5 mb-4">
+          <div className="d-flex flex-column align-items-center mx-5 mb-4">
             {this.state.allNews.articles.map((val, index) => {
-              return <div key={index} className="col d-flex mt-4 border mx-2 cbackground" >
+              return <div key={index} className="d-flex mt-4 border mx-2 cbackground" >
                         <div>
-                          <img className="ms-4 mt-4 mb-4 border" src={this.state.allNews.articles[index].urlToImage} width="300" height="150"/>
-                        </div>
-                        <div className="ms-5 col-6">
-                          <p className="text-center white-text pt-2">{this.state.allNews.articles[index].source.name}</p>
-                          <a href={this.state.allNews.articles[index].url}><p className="text-center white-text pt-3">{this.state.allNews.articles[index].title}</p></a>
-                          <div className="d-flex justify-content-center">
+                          <div className="d-flex">
+                            <p className="text-center white-text pt-2">{this.state.allNews.articles[index].source.name}</p>
+                            <a href={this.state.allNews.articles[index].url}><p className="text-center white-text pt-3">{this.state.allNews.articles[index].title}</p></a>
+                          </div>
+                          <div className="d-flex justify-content-center flex-wrap">
                             <EmailShareButton className="mx-2" url={this.state.allNews.articles[index].url}>
                               <EmailIcon size={35} round/>
                             </EmailShareButton>

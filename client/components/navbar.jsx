@@ -22,9 +22,9 @@ function Navbar(props) {
       <div className="col-4 mt-5 text-center">
         <i onClick={onClick} className="icon-size fas fa-bars"></i>
         <div className="forward-menu mx-auto">
-          <a href="#"><p className="mb-2 mt-2 px-1 white-text">Coins</p></a>
-          <a href="#news"><p className="mb-2 mt-2 px-1 white-text">News</p></a>
-          <a href="#fomo"><p className="mb-2 mt-2 px-1 white-text">FOMO</p></a>
+          <a href="#"><p className="font mb-2 mt-2 px-1 white-text">Coins</p></a>
+          <a href="#news"><p className="font mb-2 mt-2 px-1 white-text">News</p></a>
+          <a href="#fomo"><p className="font mb-2 mt-2 px-1 white-text">FOMO</p></a>
         </div>
         </div>
         </>;
@@ -36,7 +36,7 @@ function Navbar(props) {
           <div className="col-4 text-center mt-5">
             <a href="#"><i className="text-center fab fa-bitcoin icon-size"></i></a>
           </div>
-          <p className="text col-4 text-center">Crypto<br></br>Tracker</p>
+          <p className="text font col-4 text-center">Crypto<br></br>Tracker</p>
           <Burger />
         </div>
           <Tick />

@@ -157,12 +157,12 @@ class Coin extends React.Component {
     return <>
           <div className="d-flex justify-content-center mt-4">
           <form className="d-flex justify-content-center input-width" onSubmit={this.onFormSubmit}>
-            <input type="text" placeholder="Seach for Coins e.g 'bitcoin'" className="input-width" onChange={this.onHandleChange}/>
-            <button>Search</button>
+            <input type="text" placeholder="Seach for Coins e.g 'bitcoin'" className="font input-width" onChange={this.onHandleChange}/>
+            <button className="font">Search</button>
           </form>
           <div className="input-width d-flex justify-content-center ">
           <label className="ms-3" htmlFor="sort">Sort By:</label>
-          <select name="sort" className="ms-3" onChange={this.toggleView}>
+          <select name="sort" className="ms-3 font" onChange={this.toggleView}>
             <option>Market Cap</option>
             <option>Volume</option>
           </select>
@@ -171,9 +171,9 @@ class Coin extends React.Component {
         <div className="d-flex flex-wrap justify-content-center mt-5">
           {this.state.coinsM.map((val, index) => {
             return <div key={index} id={val.id} className="mx-4 mt-3 mb-3 px-5 cbackground" onClick={this.toggleCoin}>
-              <p id={val.id} className="text-center white-text">{val.symbol.toUpperCase()}</p>
+              <p id={val.id} className="font text-center white-text">{val.symbol.toUpperCase()}</p>
               <img id={val.id} className="mx-auto" src={val.image} width="100" height="100" />
-              <p className="text-center mt-1 white-text">{(val.current_price).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
+              <p className="font text-center mt-1 white-text">{(val.current_price).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
             </div>;
           }) }
         </div>
@@ -183,13 +183,13 @@ class Coin extends React.Component {
   renderVolume() {
     return <>
           <div className="d-flex justify-content-center mt-4">
-          <form className="d-flex justify-content-center input-width" onSubmit={this.onFormSubmit}>
-            <input type="text" placeholder="Seach for Coins e.g 'bitcoin'" className="input-width" onChange={this.onHandleChange}/>
-            <button>Search</button>
+          <form className="font d-flex justify-content-center input-width" onSubmit={this.onFormSubmit}>
+            <input type="text" placeholder="Seach for Coins e.g 'bitcoin'" className="font input-width" onChange={this.onHandleChange}/>
+            <button className="font">Search</button>
           </form>
           <div className="input-width d-flex justify-content-center ">
           <label className="ms-3" htmlFor="sort">Sort By:</label>
-          <select name="sort" className="ms-3" onChange={this.toggleView}>
+          <select name="sort" className="font ms-3" onChange={this.toggleView}>
             <option>Market Cap</option>
             <option>Volume</option>
           </select>
@@ -198,9 +198,9 @@ class Coin extends React.Component {
         <div className="d-flex flex-wrap justify-content-center mt-5">
           {this.state.coinsV.map((val, index) => {
             return <div key={index} id={val.id} className="mx-4 mt-3 mb-3 px-5 cbackground" onClick={this.toggleCoin}>
-              <p className="text-center white-text" id={val.id} onClick={this.toggleCoin}>{val.symbol.toUpperCase()}</p>
+              <p className="font text-center white-text" id={val.id} onClick={this.toggleCoin}>{val.symbol.toUpperCase()}</p>
               <img className="mx-auto" src={val.image} width="100"/>
-              <p className="text-center white-text">{(val.current_price).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
+              <p className="font text-center white-text">{(val.current_price).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
             </div>;
           }) }
         </div>;
@@ -210,7 +210,7 @@ class Coin extends React.Component {
   renderCoin() {
     return <div>
             <div className="d-flex mt-5 mb-5" onClick={this.back}>
-              <p className="ms-5 back-text">Back to coin selection: </p>
+              <p className="font ms-5 back-text">Back to coin selection: </p>
               <button className="ms-5" onClick={this.back}>
               <i className="far fa-caret-square-left back-btn mx-5" onClick={this.back}></i>
               </button>
@@ -220,11 +220,11 @@ class Coin extends React.Component {
                 <img className="mb-5" src={this.state.currentCoin.image.large}/>
               </div>
             <div className="ms-5">
-              <h2>{this.state.currentCoin.name} <span>{ `(${this.state.currentCoin.symbol.toUpperCase()})`}</span></h2>
-              <p>Current Price: {(this.state.currentCoin.market_data.current_price.usd).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
-              <p>24 Hour Change: {(this.state.currentCoin.market_data.price_change_24h_in_currency.usd).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
-              <p>ATH: {(this.state.currentCoin.market_data.ath.usd).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
-              <p>Market Cap: {(this.state.currentCoin.market_data.market_cap.usd).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
+              <h2 className="font">{this.state.currentCoin.name} <span>{ `(${this.state.currentCoin.symbol.toUpperCase()})`}</span></h2>
+              <p className="font">Current Price: {(this.state.currentCoin.market_data.current_price.usd).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
+              <p className="font">24 Hour Change: {(this.state.currentCoin.market_data.price_change_24h_in_currency.usd).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
+              <p className="font">ATH: {(this.state.currentCoin.market_data.ath.usd).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
+              <p className="font">Market Cap: {(this.state.currentCoin.market_data.market_cap.usd).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
             </div>
           </div>
           <div className="mx-auto width-70">
