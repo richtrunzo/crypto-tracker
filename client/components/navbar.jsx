@@ -16,32 +16,31 @@ function Navbar(props) {
 
   const Burger = () => {
     if (page === false) {
-      return <i onClick={onClick} className="fas fa-bars"></i>;
+      return <i onClick={onClick} className="mt-5 text-center col-4 icon-size fas fa-bars"></i>;
     } else {
       return <>
-        <div>
-          <i onClick={onClick} className="back-text fas fa-bars"></i>
-          <a href="#"><p className="text mb-5">Coins</p></a>
-          <a href="#news"><p className="text mb-5">News</p></a>
-          <a href="#fomo"><p className="text mb-5">FOMO</p></a>
+      <div className="col-4 mt-5 text-center">
+        <i onClick={onClick} className="icon-size fas fa-bars"></i>
+        <div className="forward-menu mx-auto">
+          <a href="#"><p className="mb-2 mt-2 px-1 white-text">Coins</p></a>
+          <a href="#news"><p className="mb-2 mt-2 px-1 white-text">News</p></a>
+          <a href="#fomo"><p className="mb-2 mt-2 px-1 white-text">FOMO</p></a>
+        </div>
         </div>
         </>;
     }
   };
 
-  return <div>
-    <div className="d-flex nwidth black">
-      <div className="navwidth pt-5 text-center">
-        <div className="d-flex ms-4">
-          <a href="#"><i className="fab fa-bitcoin icon-size"></i></a>
-          <p className="text ms-2">Crypto Tracker</p>
+  return <>
+        <div className="main-header d-flex container-fluid justify-content-around">
+          <div className="col-4 text-center mt-5">
+            <a href="#"><i className="text-center fab fa-bitcoin icon-size"></i></a>
+          </div>
+          <p className="text col-4 text-center">Crypto<br></br>Tracker</p>
+          <Burger />
         </div>
-      </div>
-      <Burger />
-    </div>
-    <Tick />
-    </div>;
-
+          <Tick />
+        </>;
 }
 
 export default Navbar;

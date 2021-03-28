@@ -4,11 +4,24 @@ body {
 
 }
 
+/* .main-header {
+  background-image: url('./photos/background.png');
+  background-size: contain;
+
+} */
+
 .cbackground {
   border-radius: 3rem;
   box-shadow: rgb(118, 122, 128) 0px 20px 30px -10px;
   backdrop-filter: blur(10px) brightness(30%);
 
+}
+
+.forward-menu {
+  position: relative;
+  box-shadow: rgb(118, 122, 128) 0px 20px 30px -10px;
+  backdrop-filter: blur(10px) brightness(20%);
+  z-index: 10000;
 }
 
 .back-text {
@@ -18,7 +31,6 @@ body {
 .share-button {
   width: 5%;
   border-radius: 1rem;
-
 
 }
 
