@@ -1,5 +1,8 @@
 import React from 'react';
 import priceCalc from '../lib/fomo-calculate';
+import Select from 'react-select';
+
+const options = [];
 
 export default class Fomo extends React.Component {
   constructor(props) {
@@ -27,15 +30,26 @@ export default class Fomo extends React.Component {
       .then(res => res.json())
       .then(data => {
         this.setState({ coins: data });
+      })
+      .then(() => {
+        for (let i = 0; i < this.state.coins.length; i++) {
+          const option = {
+            value: this.state.coins[i].name,
+            label: this.state.coins[i].name
+          };
+          options.push(option);
+        }
+        console.log(options);
       });
+
   }
 
   investmentChange() {
     this.setState({ investment: event.target.value });
   }
 
-  coinChange() {
-    this.setState({ coin: event.target.value });
+  coinChange(coin) {
+    this.setState({ coin });
   }
 
   dateChange() {
@@ -43,9 +57,10 @@ export default class Fomo extends React.Component {
   }
 
   onFormSubmit(e) {
+    console.log(this.state.coin);
     e.preventDefault();
 
-    const coin = this.state.coin.toLowerCase();
+    const coin = this.state.coin.value.toLowerCase();
     const date = this.state.date;
 
     fetch(`/api/date/${coin}/${date}`, {
@@ -81,6 +96,8 @@ export default class Fomo extends React.Component {
   }
 
   renderI() {
+    const { coin } = this.state;
+
     return <div>
             <div className="mx-auto d-flex justify-content-center flex-column name-width">
               <p>Welcome to the FOMO Calculator!<br></br>
@@ -91,12 +108,7 @@ export default class Fomo extends React.Component {
             </div>
             <form className="mx-auto d-flex justify-content-center flex-column name-width" onSubmit={this.onFormSubmit}>
               <input className="mt-3" type="text" placeholder="Initial Investment" onChange={this.investmentChange}></input>
-              <select defaultValue="Choose a Coin" className="mt-3" onChange={this.coinChange}>
-                <option>Choose a Coin</option>
-                {this.state.coins.map((val, index) => {
-                  return <option key={index}>{val.name}</option>;
-                })}
-              </select>
+              <Select onChange={this.coinChange} value={coin} options={options} isSearchable={true} />
               <input className="mt-3" onChange={this.dateChange} placeholder="Enter investment date: dd-mm-yyyy (i.e. 05-20-2010)"></input>
               <button className="mt-3">Calculate</button>
             </form>
@@ -107,7 +119,7 @@ export default class Fomo extends React.Component {
   renderD() {
     return <div>
             <div>
-              <p className="text-center">If you invested <span>{(this.state.investment).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</span> in <span>{this.state.coin}</span> on <span>{this.state.date}</span>, you would have <span>{(this.state.currentCash).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</span> today.</p>
+              <p className="text-center">If you invested <span>{(this.state.investment).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</span> in <span>{this.state.coin.value}</span> on <span>{this.state.date}</span>, you would have <span>{(this.state.currentCash).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</span> today.</p>
             </div>
             <div className="d-flex justify-content-center">
               <button onClick={this.reset}>Try Again</button>
@@ -116,6 +128,7 @@ export default class Fomo extends React.Component {
   }
 
   render() {
+    console.log(options);
     if (this.state.coins === null && this.state.calculated === false) {
       return <>
             <div className="mt-5 d-flex justify-content-center">
