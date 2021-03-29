@@ -36,7 +36,11 @@ export default class Tick extends React.Component {
 
   render() {
     if (this.state.coins === null) {
-      return <div>test</div>;
+      return <div className="mt-5 d-flex justify-content-center">
+                <p className="font">Loading...</p>
+                <i className="fas fa-cog fa-spin"></i>
+            </div>;
+
     } else {
       return this.renderTick();
     }

@@ -21,6 +21,10 @@ body {
   font-family: 'Maven Pro', sans-serif;
 }
 
+.news-width {
+  width: 65%;
+}
+
 .img-size {
   width: 30%;
   height: 90%;

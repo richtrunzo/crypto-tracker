@@ -76,7 +76,7 @@ export default class News extends React.Component {
 
   renderAllNews() {
     return <>
-          <form className="d-flex justify-content-center input-width" onSubmit={this.onFormSubmit}>
+          <form className="d-flex justify-content-center mt-4 input-width" onSubmit={this.onFormSubmit}>
             <label className="ms-3" htmlFor="sort">View News By Coin:</label>
             <select defaultValue="All News" name="sort" className="ms-3" onChange={this.onHandleChange}>
                <option>All News</option>
@@ -88,13 +88,10 @@ export default class News extends React.Component {
           </form>
           <div className="d-flex flex-column align-items-center mx-5 mb-4">
             {this.state.allNews.articles.map((val, index) => {
-              return <div key={index} className="d-flex mt-4 border mx-2 cbackground" >
-                        <div>
-                          <div className="d-flex">
+              return <div key={index} className="mt-4 border mx-2 cbackground news-width" >
                             <p className="text-center white-text pt-2">{this.state.allNews.articles[index].source.name}</p>
                             <a href={this.state.allNews.articles[index].url}><p className="text-center white-text pt-3">{this.state.allNews.articles[index].title}</p></a>
-                          </div>
-                          <div className="d-flex justify-content-center flex-wrap">
+                          <div className="d-flex justify-content-center flex-wrap mb-4">
                             <EmailShareButton className="mx-2" url={this.state.allNews.articles[index].url}>
                               <EmailIcon size={35} round/>
                             </EmailShareButton>
@@ -110,7 +107,6 @@ export default class News extends React.Component {
                             <TwitterShareButton className="mx-2" url={this.state.allNews.articles[index].url}>
                               <TwitterIcon size={35} round/>
                             </TwitterShareButton>
-                          </div>
                         </div>
                     </div>;
             })}
