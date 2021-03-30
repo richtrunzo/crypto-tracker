@@ -84,7 +84,7 @@ export default class News extends React.Component {
                   return <option key={index}>{val.name}</option>;
                 })}
             </select>
-            <button>Submit</button>
+            <button className="font btn btn-danger">Submit</button>
           </form>
           <div className="d-flex flex-column align-items-center mx-5 mb-4">
             {this.state.allNews.articles.map((val, index) => {
@@ -124,7 +124,7 @@ export default class News extends React.Component {
                   return <option key={index}>{val.name}</option>;
                 })}
             </select>
-            <button>Submit</button>
+            <button className="font btn btn-danger">Submit</button>
           </form>
           <div className="d-flex flex-column align-items-center mx-5 mb-4">
             {this.state.allNews.articles.map((val, index) => {

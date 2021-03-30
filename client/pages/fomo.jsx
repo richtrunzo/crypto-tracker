@@ -99,18 +99,24 @@ export default class Fomo extends React.Component {
     const { coin } = this.state;
 
     return <>
-            <div className="text-center">
-              <p>Welcome to the FOMO Calculator!<br></br>
-              This is where you can calculate the following: <br></br>
-              If I had invested X amount in Y cryptocurrency on Z date, today I'd have $$$.<br></br>
-              Fill out the form below to calculate your FOMO!
+            <div className="text-center mt-5">
+              <p className="fomo-font mt-3">Welcome to the FOMO Calculator!
+              <br></br>
+              <br></br>
+              <span className="fomo-font pt-3">This is where you can calculate the following:</span>
+              <br></br>
+              <br></br>
+              <span className="pt-3 fomo-font fst-italic fw-bold">If I had invested X amount in Y cryptocurrency on Z date, today I'd have $$$.</span>
+              <br></br>
+              <br></br>
+              <span className="pt-3 fomo-font">Fill out the form below to calculate your FOMO!</span>
               </p>
             </div>
-            <form className="" onSubmit={this.onFormSubmit}>
-              <input className="mt-3" type="text" placeholder="Initial Investment" onChange={this.investmentChange}></input>
-              <Select onChange={this.coinChange} value={coin} options={options} isSearchable={true} />
-              <input className="mt-3" onChange={this.dateChange} placeholder="Enter investment date: dd-mm-yyyy (i.e. 05-20-2010)"></input>
-              <button className="mt-3">Calculate</button>
+            <form className="mt-5 mb-5 d-flex align-items-center flex-column" onSubmit={this.onFormSubmit}>
+              <input className="mt-5 fomo-width mx-auto" type="text" placeholder="Initial Investment" onChange={this.investmentChange}></input>
+              <Select className ="mt-5 fomo-width" onChange={this.coinChange} value={coin} options={options} isSearchable={true} />
+              <input className="mt-5 fomo-width mx-auto" onChange={this.dateChange} placeholder="Enter investment date: dd-mm-yyyy (i.e. 20-05-2010)"></input>
+              <button className="mt-5 mb-5 mx-auto btn btn-danger">Calculate</button>
             </form>
           </>;
 
@@ -119,10 +125,10 @@ export default class Fomo extends React.Component {
   renderD() {
     return <>
             <div>
-              <p className="text-center">If you invested <span>{(this.state.investment).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</span> in <span>{this.state.coin.value}</span> on <span>{this.state.date}</span>, you would have <span>{(this.state.currentCash).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</span> today.</p>
+              <p className="text-center fomo-font">If you invested <span className="fst-italic fw-bold">{(this.state.investment).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</span> in <span className="fst-italic fw-bold">{this.state.coin.value}</span> on <span className="fst-italic fw-bold">{this.state.date}</span>, you would have <span className="fst-italic fw-bold">{(this.state.currentCash).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</span> today.</p>
             </div>
             <div className="d-flex justify-content-center">
-              <button onClick={this.reset}>Try Again</button>
+              <button className="btn-danger"onClick={this.reset}>Try Again</button>
             </div>
           </>;
   }

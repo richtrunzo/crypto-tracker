@@ -176,7 +176,7 @@ class Coin extends React.Component {
           <form className="d-flex input-width justify-content-center" onSubmit={this.onFormSubmit}>
             {/* <input type="text" placeholder="Seach for Coins e.g 'bitcoin'" className="font input-width" onChange={this.onHandleChange}/> */}
             <Select className="input-width" onChange={this.onHandleChange} value={coinId} options={options} isSearchable={true} />
-            <button className="font">Search</button>
+            <button className="font btn btn-danger mx-2">Search</button>
           </form>
           <div className="d-flex input-width justify-content-center ">
           <label className="ms-3 font" htmlFor="sort">Sort By:</label>
@@ -205,7 +205,7 @@ class Coin extends React.Component {
           <form className="font d-flex justify-content-center input-width" onSubmit={this.onFormSubmit}>
             {/* <input type="text" placeholder="Seach for Coins e.g 'bitcoin'" className="font input-width" onChange={this.onHandleChange}/> */}
             <Select className="input-width" onChange={this.onHandleChange} value={coinId} options={options} isSearchable={true} />
-            <button className="font">Search</button>
+            <button className="font btn btn-danger mx-3">Search</button>
           </form>
           <div className="input-width d-flex justify-content-center ">
           <label className="ms-3 font" htmlFor="sort">Sort By:</label>
@@ -232,7 +232,7 @@ class Coin extends React.Component {
     return <div>
             <div className="d-flex mt-5 mb-5" onClick={this.back}>
               <p className="font ms-5 back-text">Back to coin selection: </p>
-              <button className="ms-5" onClick={this.back}>
+              <button className="ms-5 btn btn-danger" onClick={this.back}>
               <i className="far fa-caret-square-left back-btn mx-5" onClick={this.back}></i>
               </button>
             </div>
