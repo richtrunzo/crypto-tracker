@@ -15,6 +15,11 @@ body {
   font-family: 'Maven Pro', sans-serif;
 }
 
+.menu-font {
+  font-size: 50px;
+
+}
+
 .news-width {
   width: 65%;
 }

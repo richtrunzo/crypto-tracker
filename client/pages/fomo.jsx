@@ -34,7 +34,7 @@ export default class Fomo extends React.Component {
       .then(() => {
         for (let i = 0; i < this.state.coins.length; i++) {
           const option = {
-            value: this.state.coins[i].name,
+            value: this.state.coins[i].id,
             label: this.state.coins[i].name
           };
           options.push(option);
@@ -98,33 +98,33 @@ export default class Fomo extends React.Component {
   renderI() {
     const { coin } = this.state;
 
-    return <div>
-            <div className="mx-auto d-flex justify-content-center flex-column name-width">
+    return <>
+            <div className="text-center">
               <p>Welcome to the FOMO Calculator!<br></br>
               This is where you can calculate the following: <br></br>
               If I had invested X amount in Y cryptocurrency on Z date, today I'd have $$$.<br></br>
               Fill out the form below to calculate your FOMO!
               </p>
             </div>
-            <form className="mx-auto d-flex justify-content-center flex-column name-width" onSubmit={this.onFormSubmit}>
+            <form className="" onSubmit={this.onFormSubmit}>
               <input className="mt-3" type="text" placeholder="Initial Investment" onChange={this.investmentChange}></input>
               <Select onChange={this.coinChange} value={coin} options={options} isSearchable={true} />
               <input className="mt-3" onChange={this.dateChange} placeholder="Enter investment date: dd-mm-yyyy (i.e. 05-20-2010)"></input>
               <button className="mt-3">Calculate</button>
             </form>
-          </div>;
+          </>;
 
   }
 
   renderD() {
-    return <div>
+    return <>
             <div>
               <p className="text-center">If you invested <span>{(this.state.investment).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</span> in <span>{this.state.coin.value}</span> on <span>{this.state.date}</span>, you would have <span>{(this.state.currentCash).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</span> today.</p>
             </div>
             <div className="d-flex justify-content-center">
               <button onClick={this.reset}>Try Again</button>
             </div>
-          </div>;
+          </>;
   }
 
   render() {
