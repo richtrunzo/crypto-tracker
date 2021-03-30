@@ -4,6 +4,7 @@ import Navbar from './components/navbar';
 import parseRoute from './lib/parse-route';
 import News from './pages/news';
 import Fomo from './pages/fomo';
+import Footer from './components/footer';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -26,16 +27,19 @@ export default class App extends React.Component {
       return <>
               <Navbar />
               <Coin />
+              <Footer />
            </>;
     } else if (this.state.route.path === 'news') {
       return <>
               <Navbar />
               <News />
+              <Footer />
            </>;
     } else if (this.state.route.path === 'fomo') {
       return <>
               <Navbar />
               <Fomo />
+              <Footer />
            </>;
     }
   }
