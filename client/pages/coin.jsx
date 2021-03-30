@@ -1,6 +1,7 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import getDate from '../lib/date-check';
+import Select from 'react-select';
 
 const lineData = {
   labels: [],
@@ -29,6 +30,8 @@ const lineData = {
   ]
 };
 
+const options = [];
+
 class Coin extends React.Component {
   constructor(props) {
     super(props);
@@ -54,6 +57,15 @@ class Coin extends React.Component {
       .then(res => res.json())
       .then(data => {
         this.setState({ coinsM: data });
+      })
+      .then(() => {
+        for (let i = 0; i < this.state.coinsM.length; i++) {
+          const option = {
+            value: this.state.coinsM[i].id,
+            label: this.state.coinsM[i].name
+          };
+          options.push(option);
+        }
       });
 
     fetch('/api/volume', { method: 'GET' })
@@ -118,13 +130,16 @@ class Coin extends React.Component {
   }
 
   onFormSubmit(e) {
+    console.log(event.target.value);
+    lineData.datasets[0].label = this.state.coinId.value + ' one month chart';
+
     e.preventDefault();
-    fetch(`https://api.coingecko.com/api/v3/coins/${this.state.coinId}?tickers=true&market_data=true&community_data=true`, { method: 'GET' })
+    fetch(`https://api.coingecko.com/api/v3/coins/${this.state.coinId.value.toLowerCase().replace(/\s/g, '')}?tickers=true&market_data=true&community_data=true`, { method: 'GET' })
       .then(res => res.json())
       .then(data => {
         this.setState({ currentCoin: data });
       })
-      .then(fetch(`https://api.coingecko.com/api/v3/coins/${this.state.coinId}/market_chart?vs_currency=usd&days=30&interval=daily`, { method: 'GET' })
+      .then(fetch(`https://api.coingecko.com/api/v3/coins/${this.state.coinId.value.toLowerCase().replace(/\s/g, '')}/market_chart?vs_currency=usd&days=30&interval=daily`, { method: 'GET' })
         .then(res => res.json())
         .then(data => {
           lineData.labels = [];
@@ -138,30 +153,33 @@ class Coin extends React.Component {
               }
             }
           }
+          console.log(lineData);
         })
       )
       .then(() => {
+        console.log(lineData);
         this.setState({
-          coinPage: true
+          coinPage: true,
+          coinId: null
         });
       });
   }
 
-  onHandleChange() {
-    this.setState({
-      coinId: event.target.value.toLowerCase()
-    });
+  onHandleChange(coinId) {
+    this.setState({ coinId });
   }
 
   renderMarket() {
+    const { coinId } = this.state;
     return <>
           <div className="d-flex justify-content-center mt-4">
-          <form className="d-flex justify-content-center input-width" onSubmit={this.onFormSubmit}>
-            <input type="text" placeholder="Seach for Coins e.g 'bitcoin'" className="font input-width" onChange={this.onHandleChange}/>
+          <form className="d-flex input-width justify-content-center" onSubmit={this.onFormSubmit}>
+            {/* <input type="text" placeholder="Seach for Coins e.g 'bitcoin'" className="font input-width" onChange={this.onHandleChange}/> */}
+            <Select className="input-width" onChange={this.onHandleChange} value={coinId} options={options} isSearchable={true} />
             <button className="font">Search</button>
           </form>
-          <div className="input-width d-flex justify-content-center ">
-          <label className="ms-3" htmlFor="sort">Sort By:</label>
+          <div className="d-flex input-width justify-content-center ">
+          <label className="ms-3 font" htmlFor="sort">Sort By:</label>
           <select name="sort" className="ms-3 font" onChange={this.toggleView}>
             <option>Market Cap</option>
             <option>Volume</option>
@@ -181,14 +199,16 @@ class Coin extends React.Component {
   }
 
   renderVolume() {
+    const { coinId } = this.state;
     return <>
           <div className="d-flex justify-content-center mt-4">
           <form className="font d-flex justify-content-center input-width" onSubmit={this.onFormSubmit}>
-            <input type="text" placeholder="Seach for Coins e.g 'bitcoin'" className="font input-width" onChange={this.onHandleChange}/>
+            {/* <input type="text" placeholder="Seach for Coins e.g 'bitcoin'" className="font input-width" onChange={this.onHandleChange}/> */}
+            <Select className="input-width" onChange={this.onHandleChange} value={coinId} options={options} isSearchable={true} />
             <button className="font">Search</button>
           </form>
           <div className="input-width d-flex justify-content-center ">
-          <label className="ms-3" htmlFor="sort">Sort By:</label>
+          <label className="ms-3 font" htmlFor="sort">Sort By:</label>
           <select name="sort" className="font ms-3" onChange={this.toggleView}>
             <option>Market Cap</option>
             <option>Volume</option>
@@ -208,6 +228,7 @@ class Coin extends React.Component {
   }
 
   renderCoin() {
+    console.log(this.state.coinId);
     return <div>
             <div className="d-flex mt-5 mb-5" onClick={this.back}>
               <p className="font ms-5 back-text">Back to coin selection: </p>
@@ -237,6 +258,7 @@ class Coin extends React.Component {
   }
 
   render() {
+    console.log(this.state.coinId);
     if (this.state.renderType === 'm' && this.state.coinPage === false) {
       return this.renderMarket();
     } else if (this.state.renderType === 'v' && this.state.coinPage === false) {

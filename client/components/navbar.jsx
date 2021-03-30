@@ -20,11 +20,11 @@ function Navbar(props) {
     } else {
       return <>
       <div className="col-4 mt-5 text-center">
-        <i onClick={onClick} className="icon-size fas fa-bars"></i>
-        <div className="forward-menu mx-auto">
-          <a href="#" onClick={onClick}><p className="font mb-2 mt-2 px-1 white-text">Coins</p></a>
-          <a href="#news"onClick={onClick}><p className="font mb-2 mt-2 px-1 white-text">News</p></a>
-          <a href="#fomo"onClick={onClick}><p className="font mb-2 mt-2 px-1 white-text">FOMO</p></a>
+        <div className="forward-menu position-absolute top-50 start-50 translate-middle mx-auto">
+          <a href="#" onClick={onClick}><p className="font mb-2 mt-5 px-1 white-text">Coins</p></a>
+          <a href="#news"onClick={onClick}><p className="font mb-2 mt-5 px-1 white-text">News</p></a>
+          <a href="#fomo"onClick={onClick}><p className="font mb-2 mt-5 px-1 white-text">FOMO</p></a>
+          <i onClick={onClick} className="mt-5 white-text fas fa-times"></i>
         </div>
         </div>
         </>;
