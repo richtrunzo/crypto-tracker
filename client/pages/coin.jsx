@@ -189,8 +189,8 @@ class Coin extends React.Component {
         <div className="d-flex flex-wrap justify-content-center mt-5">
           {this.state.coinsM.map((val, index) => {
             return <div key={index} id={val.id} className="mx-4 mt-3 mb-3 px-5 cbackground" onClick={this.toggleCoin}>
-              <p id={val.id} className="font text-center white-text">{val.symbol.toUpperCase()}</p>
-              <img id={val.id} className="mx-auto" src={val.image} width="100" height="100" />
+              <p id={val.id} onClick={this.toggleCoin} className="font text-center white-text">{val.symbol.toUpperCase()}</p>
+              <img id={val.id} onClick={this.toggleCoin} className="mx-auto" src={val.image} width="100" height="100" />
               <p className="font text-center mt-1 white-text">{(val.current_price).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
             </div>;
           }) }
@@ -219,8 +219,8 @@ class Coin extends React.Component {
           {this.state.coinsV.map((val, index) => {
             return <div key={index} id={val.id} className="mx-4 mt-3 mb-3 px-5 cbackground" onClick={this.toggleCoin}>
               <p className="font text-center white-text" id={val.id} onClick={this.toggleCoin}>{val.symbol.toUpperCase()}</p>
-              <img className="mx-auto" src={val.image} width="100"/>
-              <p className="font text-center white-text">{(val.current_price).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
+              <img className="mx-auto" id={val.id} onClick={this.toggleCoin} src={val.image} width="100"/>
+              <p className="font text-center white-text" id={val.id} onClick={this.toggleCoin}>{(val.current_price).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
             </div>;
           }) }
         </div>;
@@ -251,14 +251,13 @@ class Coin extends React.Component {
           <div className="mx-auto width-70">
             <p dangerouslySetInnerHTML={{ __html: this.state.currentCoin.description.en }}></p>
           </div>
-          <div className="d-flex mb-5 justify-content-center mx-auto width-75">
+          <div className="d-flex big-margin pt-5 justify-content-center mx-auto width-75">
             <Line data={lineData} />
           </div>
         </div>;
   }
 
   render() {
-    console.log(this.state.coinId);
     if (this.state.renderType === 'm' && this.state.coinPage === false) {
       return this.renderMarket();
     } else if (this.state.renderType === 'v' && this.state.coinPage === false) {

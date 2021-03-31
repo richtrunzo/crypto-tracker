@@ -75,6 +75,10 @@ body {
 
 }
 
+.big-margin {
+  margin-bottom: 8%;
+}
+
 .white-text {
   color: whitesmoke;
 }
