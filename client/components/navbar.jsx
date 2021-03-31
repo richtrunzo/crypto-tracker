@@ -25,7 +25,7 @@ function Navbar(props) {
           <a href="#" onClick={onClick}><p className="menu-font mb-2 font mt-5 px-1 white-text">Coins</p></a>
           <a href="#news"onClick={onClick}><p className="menu-font font mb-2 mt-5 px-1 white-text">News</p></a>
           <a href="#fomo"onClick={onClick}><p className="menu-font font mb-2 mt-5 px-1 white-text">FOMO</p></a>
-          <i onClick={onClick} className="menu-font mt-5 white-text fas fa-times"></i>
+          <i onClick={onClick} className="pointer menu-font mt-5 white-text big-text far fa-window-close"></i>
         </div>
         </div>
         </>;

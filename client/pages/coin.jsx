@@ -11,13 +11,13 @@ const lineData = {
       fill: false,
       lineTension: 0.1,
       backgroundColor: 'rgba(75,192,192,0.4)',
-      borderColor: 'rgba(75,192,192,1)',
+      borderColor: 'rgb(187, 84, 82, 1)',
       borderCapStyle: 'butt',
       borderDash: [],
       borderDashOffset: 0.0,
       borderJoinStyle: 'miter',
-      pointBorderColor: 'rgba(75,192,192,1)',
-      pointBackgroundColor: '#fff',
+      pointBorderColor: 'rgb(255, 0, 0)',
+      pointBackgroundColor: 'rgb(57, 63, 68)',
       pointBorderWidth: 1,
       pointHoverRadius: 5,
       pointHoverBackgroundColor: 'rgba(75,192,192,1)',
@@ -188,9 +188,9 @@ class Coin extends React.Component {
         </div>
         <div className="d-flex flex-wrap justify-content-center mt-5">
           {this.state.coinsM.map((val, index) => {
-            return <div key={index} id={val.id} className="mx-4 mt-3 mb-3 px-5 cbackground" onClick={this.toggleCoin}>
-              <p id={val.id} onClick={this.toggleCoin} className="font text-center white-text">{val.symbol.toUpperCase()}</p>
-              <img id={val.id} onClick={this.toggleCoin} className="mx-auto" src={val.image} width="100" height="100" />
+            return <div key={index} id={val.id} className="pointer mx-4 mt-3 mb-3 px-5 cbackground" onClick={this.toggleCoin}>
+              <p id={val.id} onClick={this.toggleCoin} className="pointer font text-center white-text">{val.symbol.toUpperCase()}</p>
+              <img id={val.id} onClick={this.toggleCoin} className="pointer mx-auto" src={val.image} width="100" height="100" />
               <p className="font text-center mt-1 white-text">{(val.current_price).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
             </div>;
           }) }
@@ -217,10 +217,10 @@ class Coin extends React.Component {
         </div>
         <div className="d-flex flex-wrap justify-content-center mt-5">
           {this.state.coinsV.map((val, index) => {
-            return <div key={index} id={val.id} className="mx-4 mt-3 mb-3 px-5 cbackground" onClick={this.toggleCoin}>
-              <p className="font text-center white-text" id={val.id} onClick={this.toggleCoin}>{val.symbol.toUpperCase()}</p>
-              <img className="mx-auto" id={val.id} onClick={this.toggleCoin} src={val.image} width="100"/>
-              <p className="font text-center white-text" id={val.id} onClick={this.toggleCoin}>{(val.current_price).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
+            return <div key={index} id={val.id} className="pointer mx-4 mt-3 mb-3 px-5 cbackground" onClick={this.toggleCoin}>
+              <p className="pointer font text-center white-text" id={val.id} onClick={this.toggleCoin}>{val.symbol.toUpperCase()}</p>
+              <img className="pointer mx-auto" id={val.id} onClick={this.toggleCoin} src={val.image} width="100"/>
+              <p className="pointer font text-center white-text" id={val.id} onClick={this.toggleCoin}>{(val.current_price).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
             </div>;
           }) }
         </div>;
