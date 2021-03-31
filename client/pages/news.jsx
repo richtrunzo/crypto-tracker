@@ -12,6 +12,12 @@ import {
   RedditIcon
 
 } from 'react-share';
+import Select from 'react-select';
+
+const options = [{
+  value: 'All News',
+  label: 'All News'
+}];
 
 export default class News extends React.Component {
   constructor(props) {
@@ -41,16 +47,25 @@ export default class News extends React.Component {
       .then(res => res.json())
       .then(data => {
         this.setState({ coins: data });
+      })
+      .then(() => {
+        for (let i = 0; i < this.state.coins.length; i++) {
+          const option = {
+            value: this.state.coins[i].id,
+            label: this.state.coins[i].name
+          };
+          options.push(option);
+        }
       });
   }
 
-  onHandleChange() {
-    this.setState({ currentCoin: event.target.value });
+  onHandleChange(currentCoin) {
+    this.setState({ currentCoin });
   }
 
   onFormSubmit(e) {
     e.preventDefault();
-    let coin = this.state.currentCoin + ' crypto currency';
+    let coin = this.state.currentCoin.label;
     if (coin === 'Theta Network') {
       coin = 'Theta crypto currency';
     }
@@ -75,16 +90,11 @@ export default class News extends React.Component {
   }
 
   renderAllNews() {
+    const { currentCoin } = this.state;
     return <>
-          <form className="font d-flex justify-content-center mt-4 input-width" onSubmit={this.onFormSubmit}>
-            <label className="font ms-3" htmlFor="sort">View News By Coin:</label>
-            <select defaultValue="All News" name="sort" className="font ms-3" onChange={this.onHandleChange}>
-               <option>All News</option>
-                {this.state.coins.map((val, index) => {
-                  return <option key={index}>{val.name}</option>;
-                })}
-            </select>
-            <button className="font btn btn-danger">Submit</button>
+          <form className="font d-flex justify-content-center mt-4" onSubmit={this.onFormSubmit}>
+            <Select className="input-width" onChange={this.onHandleChange} value={currentCoin} options={options} isSearchable={true} />
+            <button className="font ms-3 btn btn-danger">Submit</button>
           </form>
           <div className="d-flex flex-column align-items-center mx-5 mb-4">
             {this.state.allNews.articles.map((val, index) => {
@@ -115,16 +125,11 @@ export default class News extends React.Component {
   }
 
   renderSearchNews() {
+    const { currentCoin } = this.state;
     return <>
-          <form className="d-flex font justify-content-center mt-4 input-width" onSubmit={this.onFormSubmit}>
-            <label className="font ms-3" htmlFor="sort">View News By Coin:</label>
-            <select defaultValue="All News" name="sort" className="font ms-3" onChange={this.onHandleChange}>
-               <option>All News</option>
-                {this.state.coins.map((val, index) => {
-                  return <option key={index}>{val.name}</option>;
-                })}
-            </select>
-            <button className="font btn btn-danger">Submit</button>
+          <form className="d-flex font justify-content-center mt-4" onSubmit={this.onFormSubmit}>
+            <Select className="input-width" onChange={this.onHandleChange} value={currentCoin} options={options} isSearchable={true} />
+            <button className="font ms-3 btn btn-danger">Submit</button>
           </form>
           <div className="d-flex flex-column align-items-center mx-5 mb-4">
             {this.state.allNews.articles.map((val, index) => {
