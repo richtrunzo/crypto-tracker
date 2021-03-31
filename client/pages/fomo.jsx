@@ -128,7 +128,7 @@ export default class Fomo extends React.Component {
               <p className="text-center fomo-font">If you invested <span className="fst-italic fw-bold">{(this.state.investment).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</span> in <span className="fst-italic fw-bold">{this.state.coin.value}</span> on <span className="fst-italic fw-bold">{this.state.date}</span>, you would have <span className="fst-italic fw-bold">{(this.state.currentCash).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</span> today.</p>
             </div>
             <div className="d-flex justify-content-center">
-              <button className="btn-danger"onClick={this.reset}>Try Again</button>
+              <button className="btn btn-danger"onClick={this.reset}>Try Again</button>
             </div>
           </>;
   }

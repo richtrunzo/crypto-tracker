@@ -15,9 +15,15 @@ body {
   cursor: pointer;
 }
 
+
+
 .fomo-font {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 35px;
+}
+
+.red-dark {
+    color: rgb(59, 22, 21);
 }
 
 .red-text {
@@ -60,9 +66,13 @@ body {
   position: fixed;
 }
 
+.underline {
+  text-decoration: underline;
+}
+
 .custom-footer {
   width: 100%;
-  height: 8%;
+  height: 12%;
   box-shadow: rgb(118, 122, 128) 0px 20px 30px -10px;
   backdrop-filter: blur(10px) brightness(20%);
   z-index: 10000;

@@ -21,11 +21,11 @@ function Navbar(props) {
       return <>
       <div className="col-4 mt-5 text-center">
         <div className="forward-menu position-fixed top-50 start-50 translate-middle mx-auto">
-          <p className="menu-font mb-2 font mt-5 px-1 red-text bold-font">Menu</p>
-          <a href="#" onClick={onClick}><p className="menu-font mb-2 font mt-5 px-1 white-text">Coins</p></a>
-          <a href="#news"onClick={onClick}><p className="menu-font font mb-2 mt-5 px-1 white-text">News</p></a>
-          <a href="#fomo"onClick={onClick}><p className="menu-font font mb-2 mt-5 px-1 white-text">FOMO</p></a>
-          <i onClick={onClick} className="pointer menu-font mt-5 white-text big-text far fa-window-close"></i>
+            <p className="menu-font mb-2 font mt-1 px-1 red-text bold-font">Menu</p>
+            <a href="#" onClick={onClick}><p className="menu-font mb-2 font mt-5 px-1 white-text">Coins</p></a>
+            <a href="#news"onClick={onClick}><p className="menu-font font mb-2 mt-5 px-1 white-text">News</p></a>
+            <a href="#fomo"onClick={onClick}><p className="menu-font font mb-2 mt-5 px-1 white-text">FOMO</p></a>
+            <i onClick={onClick} className="pointer menu-font mt-5 white-text big-text far fa-window-close"></i>
         </div>
         </div>
         </>;

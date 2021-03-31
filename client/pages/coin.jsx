@@ -179,7 +179,7 @@ class Coin extends React.Component {
             <button className="font btn btn-danger mx-2">Search</button>
           </form>
           <div className="d-flex input-width justify-content-center ">
-          <label className="ms-3 font" htmlFor="sort">Sort By:</label>
+          <label className="ms-3 mt-2 font" htmlFor="sort">Sort By:</label>
           <select name="sort" className="ms-3 font" onChange={this.toggleView}>
             <option>Market Cap</option>
             <option>Volume</option>
@@ -208,7 +208,7 @@ class Coin extends React.Component {
             <button className="font btn btn-danger mx-3">Search</button>
           </form>
           <div className="input-width d-flex justify-content-center ">
-          <label className="ms-3 font" htmlFor="sort">Sort By:</label>
+          <label className="ms-3 mt-2 font" htmlFor="sort">Sort By:</label>
           <select name="sort" className="font ms-3" onChange={this.toggleView}>
             <option>Market Cap</option>
             <option>Volume</option>
@@ -229,14 +229,9 @@ class Coin extends React.Component {
 
   renderCoin() {
     console.log(this.state.coinId);
-    return <div>
-            <div className="d-flex mt-5 mb-5" onClick={this.back}>
-              <p className="font ms-5 back-text">Back to coin selection: </p>
-              <button className="ms-5 btn btn-danger" onClick={this.back}>
-              <i className="far fa-caret-square-left back-btn mx-5" onClick={this.back}></i>
-              </button>
-            </div>
-            <div className="d-flex justify-content-center mt-4">
+    return <>
+            <div className="d-flex justify-content-center mt-4 flex-wrap">
+                <i className="far fa-caret-square-left mt-5 red-dark back-btn mx-5" onClick={this.back}></i>
               <div>
                 <img className="mb-5" src={this.state.currentCoin.image.large}/>
               </div>
@@ -254,7 +249,7 @@ class Coin extends React.Component {
           <div className="d-flex big-margin pt-5 justify-content-center mx-auto width-75">
             <Line data={lineData} />
           </div>
-        </div>;
+        </>;
   }
 
   render() {
