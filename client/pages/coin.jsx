@@ -1,7 +1,7 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import getDate from '../lib/date-check';
-import Select from 'react-select';
+import Creatable from 'react-select/creatable';
 
 const lineData = {
   labels: [],
@@ -116,9 +116,11 @@ class Coin extends React.Component {
         })
       )
       .then(() => {
-        this.setState({
-          coinPage: true
-        });
+        if (lineData.datasets[0].data.length !== 0) {
+          this.setState({
+            coinPage: true
+          });
+        }
       });
   }
 
@@ -130,18 +132,25 @@ class Coin extends React.Component {
   }
 
   onFormSubmit(e) {
-    console.log(event.target.value);
+    e.preventDefault();
+
     lineData.datasets[0].label = this.state.coinId.value + ' one month chart';
 
-    e.preventDefault();
-    fetch(`https://api.coingecko.com/api/v3/coins/${this.state.coinId.value.toLowerCase().replace(/\s/g, '')}?tickers=true&market_data=true&community_data=true`, { method: 'GET' })
+    const coinValue = this.state.coinId.value.toLowerCase().replace(/\s/g, '');
+    const coinMarket = this.state.coinId.value.toLowerCase().replace(/\s/g, '');
+    console.log(coinValue);
+    console.log(coinMarket);
+
+    fetch(`/api/coinval/${coinValue}`, { method: 'GET' })
       .then(res => res.json())
       .then(data => {
+        console.log(data);
         this.setState({ currentCoin: data });
       })
-      .then(fetch(`https://api.coingecko.com/api/v3/coins/${this.state.coinId.value.toLowerCase().replace(/\s/g, '')}/market_chart?vs_currency=usd&days=30&interval=daily`, { method: 'GET' })
+      .then(fetch(`/api/coinMarket/${coinMarket}`, { method: 'GET' })
         .then(res => res.json())
         .then(data => {
+          console.log(data);
           lineData.labels = [];
           lineData.datasets[0].data = [];
           for (let i = 0; i < data.prices.length; i++) {
@@ -153,16 +162,46 @@ class Coin extends React.Component {
               }
             }
           }
-          console.log(lineData);
         })
-      )
-      .then(() => {
-        console.log(lineData);
-        this.setState({
-          coinPage: true,
-          coinId: null
-        });
-      });
+        .then(() => {
+          console.log(lineData);
+          this.setState({
+            coinPage: true,
+            coinId: null
+          });
+        })
+      );
+
+    // fetch(`https://api.coingecko.com/api/v3/coins/${this.state.coinId.value.toLowerCase().replace(/\s/g, '')}?tickers=true&market_data=true&community_data=true`, { method: 'GET' })
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     console.log(data);
+    //     this.setState({ currentCoin: data });
+    //   })
+    //   .then(fetch(`https://api.coingecko.com/api/v3/coins/${this.state.coinId.value.toLowerCase().replace(/\s/g, '')}/market_chart?vs_currency=usd&days=30&interval=daily`, { method: 'GET' })
+    //     .then(res => res.json())
+    //     .then(data => {
+    //       lineData.labels = [];
+    //       lineData.datasets[0].data = [];
+    //       for (let i = 0; i < data.prices.length; i++) {
+    //         for (let j = 0; j < data.prices[i].length; j++) {
+    //           if (j === 0) {
+    //             lineData.labels.push(getDate(data.prices[i][j]));
+    //           } else if (j === 1) {
+    //             lineData.datasets[0].data.push(data.prices[i][j]);
+    //           }
+    //         }
+    //       }
+    //       console.log(lineData);
+    //     })
+    //   )
+    //   .then(() => {
+    //     console.log(lineData);
+    //     this.setState({
+    //       coinPage: true,
+    //       coinId: null
+    //     });
+    //   });
   }
 
   onHandleChange(coinId) {
@@ -175,7 +214,7 @@ class Coin extends React.Component {
           <div className="d-flex justify-content-center mt-4">
           <form className="d-flex input-width justify-content-center" onSubmit={this.onFormSubmit}>
             {/* <input type="text" placeholder="Seach for Coins e.g 'bitcoin'" className="font input-width" onChange={this.onHandleChange}/> */}
-            <Select className="input-width" onChange={this.onHandleChange} value={coinId} options={options} isSearchable={true} />
+            <Creatable className="input-width" onChange={this.onHandleChange} value={coinId} options={options} isSearchable={true} />
             <button className="font btn btn-danger mx-2">Search</button>
           </form>
           <div className="d-flex input-width justify-content-center ">
@@ -204,7 +243,7 @@ class Coin extends React.Component {
           <div className="d-flex justify-content-center mt-4">
           <form className="font d-flex justify-content-center input-width" onSubmit={this.onFormSubmit}>
             {/* <input type="text" placeholder="Seach for Coins e.g 'bitcoin'" className="font input-width" onChange={this.onHandleChange}/> */}
-            <Select className="input-width" onChange={this.onHandleChange} value={coinId} options={options} isSearchable={true} />
+            <Creatable className="input-width" onChange={this.onHandleChange} value={coinId} options={options} isSearchable={true} />
             <button className="font btn btn-danger mx-3">Search</button>
           </form>
           <div className="input-width d-flex justify-content-center ">
@@ -228,8 +267,19 @@ class Coin extends React.Component {
   }
 
   renderCoin() {
-    console.log(this.state.coinId);
-    return <>
+    console.log(this.state.currentCoin);
+
+    if (this.state.currentCoin === null) {
+      return <>
+            <div className="mt-5 d-flex justify-content-center">
+                <i className="fas fa-cog fa-spin big-text"></i>
+            </div>
+            <div className="mt-5 d-flex justify-content-center">
+                <p className="text">Loading...</p>
+            </div>;
+            </>;
+    } else {
+      return <>
             <div className="d-flex justify-content-center mt-4 flex-wrap">
                 <i className="far fa-caret-square-left mt-5 red-dark back-btn mx-5" onClick={this.back}></i>
               <div>
@@ -250,6 +300,7 @@ class Coin extends React.Component {
             <Line data={lineData} />
           </div>
         </>;
+    }
   }
 
   render() {

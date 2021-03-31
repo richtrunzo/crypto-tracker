@@ -2,6 +2,7 @@ require('dotenv/config');
 const express = require('express');
 const staticMiddleware = require('./static-middleware');
 const fetch = require('node-fetch');
+const { response } = require('express');
 
 const app = express();
 
@@ -12,6 +13,12 @@ app.get('/api/volume', (req, res) => {
     .then(res => res.json())
     .then(data => {
       res.json(data);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'an unexpected error occurred'
+      });
     });
 });
 
@@ -19,7 +26,14 @@ app.get('/api/market', (req, res) => {
   fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=200&page=1&sparkline=false', { method: 'GET' })
     .then(res => res.json())
     .then(data => {
+      console.log(response.status);
       res.json(data);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'an unexpected error occurred'
+      });
     });
 });
 
@@ -29,6 +43,12 @@ app.get('/api/coin/:coin', (req, res) => {
     .then(res => res.json())
     .then(data => {
       res.json(data);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'an unexpected error occurred'
+      });
     });
 });
 
@@ -38,6 +58,12 @@ app.get('/api/coins/:coin', (req, res) => {
     .then(res => res.json())
     .then(data => {
       res.json(data);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'an unexpected error occurred'
+      });
     });
 });
 
@@ -46,6 +72,12 @@ app.get('/api/news', (req, res) => {
     .then(res => res.json())
     .then(data => {
       res.json(data);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'an unexpected error occurred'
+      });
     });
 });
 
@@ -55,6 +87,12 @@ app.get('/api/news/:coin', (req, res) => {
     .then(res => res.json())
     .then(data => {
       res.json(data);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'an unexpected error occurred'
+      });
     });
 });
 
@@ -64,6 +102,44 @@ app.get('/api/date/:coin/:date', (req, res) => {
     .then(res => res.json())
     .then(data => {
       res.json(data.market_data.current_price.usd);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'an unexpected error occurred'
+      });
+    });
+});
+
+app.get('/api/coinval/:coinValue', (req, res) => {
+  const { coinValue } = req.params;
+  fetch(`https://api.coingecko.com/api/v3/coins/${coinValue}?tickers=true&market_data=true&community_data=true`, { method: 'GET' })
+    .then(res => res.json())
+    .then(data => {
+      res.json(data);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'an unexpected error occurred'
+      });
+    });
+});
+
+app.get('/api/coinMarket/:coinMarket', (req, res) => {
+  const { coinMarket } = req.params;
+  console.log('called');
+  fetch(`https://api.coingecko.com/api/v3/coins/${coinMarket}/market_chart?vs_currency=usd&days=30&interval=daily`, { method: 'GET' })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      res.json(data);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'an unexpected error occurred'
+      });
     });
 });
 
