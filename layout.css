@@ -1,0 +1,25 @@
+@media screen and (max-width: 1000px) {
+  .icon-size {
+    font-size: 70px;
+  }
+
+  .news-width {
+  width: 80%;
+}
+
+}
+
+@media screen and (max-width: 500px) {
+  .icon-size {
+    font-size: 50px;
+  }
+
+  .text {
+    font-size: 30px;
+  }
+
+  .news-width {
+  width: 95%;
+}
+
+}
