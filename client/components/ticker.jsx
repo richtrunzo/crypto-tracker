@@ -19,7 +19,6 @@ export default class Tick extends React.Component {
   }
 
   renderTick() {
-    console.log(this.state.coins);
     return <Ticker className="pt-5 mt-5 grey" offset="10%" speed={8}>
       {() => (
         <div className="d-flex justify-content-center grey">

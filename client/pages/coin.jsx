@@ -201,7 +201,7 @@ class Coin extends React.Component {
         </div>
         <div className="d-flex flex-wrap justify-content-center mt-5">
           {this.state.coinsM.map((val, index) => {
-            return <div key={val.id} id={val.id} className="pointer mx-4 mt-3 mb-3 px-5 cbackground" onClick={this.toggleCoin}>
+            return <div key={val.id} id={val.id} className="pointer mx-4 mt-3 mb-3 px-5 cbackground animate__animated animate__fadeInUp" onClick={this.toggleCoin}>
               <p id={val.id} onClick={this.toggleCoin} className="pointer font text-center white-text">{val.symbol.toUpperCase()}</p>
               <img id={val.id} onClick={this.toggleCoin} className="pointer mx-auto" src={val.image} width="100" height="100" />
               <p className="font text-center mt-1 white-text">{(val.current_price).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
@@ -256,7 +256,7 @@ class Coin extends React.Component {
             <div className="d-flex justify-content-center mt-4 flex-wrap">
                 <i className="far fa-caret-square-left mt-5 red-dark back-btn mx-5" onClick={this.back}></i>
               <div>
-                <img className="mb-5" src={this.state.currentCoin.image.large}/>
+                <img className="mb-5 animate__animated animate__zoomIn" src={this.state.currentCoin.image.large}/>
               </div>
             <div className="ms-5">
               <h2 className="font">{this.state.currentCoin.name} <span>{ `(${this.state.currentCoin.symbol.toUpperCase()})`}</span></h2>

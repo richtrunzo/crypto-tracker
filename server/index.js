@@ -2,8 +2,6 @@ require('dotenv/config');
 const express = require('express');
 const staticMiddleware = require('./static-middleware');
 const fetch = require('node-fetch');
-const { response } = require('express');
-const ErrorMiddleware = require('./error-middleware');
 
 const app = express();
 
