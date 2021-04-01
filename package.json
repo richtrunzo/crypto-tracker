@@ -1,16 +1,18 @@
 {
-  "name": "final-project",
+  "homepage": "https://richtrunzo.github.io/crypto-tracker",
+  "name": "crypto-tracker",
   "version": "1.0.0",
   "private": true,
   "description": "A full stack JavaScript solo project.",
   "main": "server/index.js",
   "scripts": {
+    "predeploy": "npm run build",
     "build": "webpack",
     "start": "node server/index.js",
     "dev": "npm-run-all --silent --parallel dev:*",
     "dev:client": "webpack serve --mode=development",
     "dev:server": "nodemon server/index.js",
-    "deploy" : "npm run build&&gh-pages -d build"
+    "deploy" : "gh-pages -d build"
   },
   "husky": {
     "hooks": {
