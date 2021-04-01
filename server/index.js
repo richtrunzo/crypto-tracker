@@ -1,4 +1,4 @@
-// require('dotenv/config');
+require('dotenv/config');
 const express = require('express');
 const staticMiddleware = require('./static-middleware');
 const fetch = require('node-fetch');
@@ -139,7 +139,7 @@ app.get('/api/coinMarket/:coinMarket', (req, res) => {
     });
 });
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
   // eslint-disable-next-line no-console
   console.log('express server listening on port 3000');
 });
