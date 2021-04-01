@@ -19,14 +19,15 @@ export default class Tick extends React.Component {
   }
 
   renderTick() {
+    console.log(this.state.coins);
     return <Ticker className="pt-5 mt-5 grey" offset="10%" speed={8}>
       {() => (
         <div className="d-flex justify-content-center grey">
         {this.state.coins.map((val, index) => (
-           <>
+           <div key={val.id} className="d-flex justify-content-center">
             <img className="ms-5 mt-3" src={val.image} width="30" height="30"></img>
             <p className="ms-1 mt-3 white-text">{ (val.current_price).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
-          </>
+          </div>
         ))
   }</div>
       )}
