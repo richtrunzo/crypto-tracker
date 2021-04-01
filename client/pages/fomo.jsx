@@ -13,6 +13,7 @@ export default class Fomo extends React.Component {
       investment: null,
       coin: null,
       date: null,
+      error: false,
       oldPrice: null,
       currentCash: null
     };
@@ -68,14 +69,22 @@ export default class Fomo extends React.Component {
     })
       .then(res => res.json())
       .then(data => {
-        this.setState({ oldPrice: data });
+        if (data.error) {
+          this.setState({ error: true });
+        } else {
+          this.setState({ oldPrice: data });
+        }
       })
       .then(fetch(`/api/coin/${coin}`, { method: 'GET' })
         .then(res => res.json())
         .then(data => {
-          this.setState({
-            currentCash: Math.floor(priceCalc(this.state.oldPrice, data.market_data.current_price.usd, this.state.investment))
-          });
+          if (data.error) {
+            this.setState({ error: true });
+          } else {
+            this.setState({
+              currentCash: Math.floor(priceCalc(this.state.oldPrice, data.market_data.current_price.usd, this.state.investment))
+            });
+          }
         })
         .then(() => {
           this.setState({ calculated: true });
@@ -90,6 +99,7 @@ export default class Fomo extends React.Component {
       investment: null,
       coin: null,
       date: null,
+      error: false,
       oldPrice: null,
       currentCash: null
     });
@@ -113,9 +123,9 @@ export default class Fomo extends React.Component {
               </p>
             </div>
             <form className="mt-5 mb-5 d-flex align-items-center flex-column" onSubmit={this.onFormSubmit}>
-              <input className="mt-5 fomo-width mx-auto form-control" type="text" placeholder="Initial Investment" onChange={this.investmentChange}></input>
-              <Select className ="mt-5 fomo-width" placeholder="Enter Coin Name" onChange={this.coinChange} value={coin} options={options} isSearchable={true} />
-              <input className="mt-5 fomo-width mx-auto form-control" onChange={this.dateChange} placeholder="Enter investment date: dd-mm-yyyy (i.e. 20-05-2010)"></input>
+              <input className="mt-5 fomo-width mx-auto form-control" type="text" placeholder="Initial Investment" onChange={this.investmentChange} required></input>
+              <Select className ="mt-5 fomo-width" placeholder="Enter Coin Name" onChange={this.coinChange} value={coin} options={options} isSearchable={true} required />
+              <input className="mt-5 fomo-width mx-auto form-control" onChange={this.dateChange} placeholder="Enter investment date: dd-mm-yyyy (i.e. 20-05-2010)" required></input>
               <button className="mt-3 mb-5 mx-auto btn btn-danger">Calculate</button>
             </form>
           </>;
@@ -128,14 +138,21 @@ export default class Fomo extends React.Component {
               <p className="text-center fomo-font">If you invested <span className="fst-italic fw-bold">{(this.state.investment).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</span> in <span className="fst-italic fw-bold">{this.state.coin.value}</span> on <span className="fst-italic fw-bold">{this.state.date}</span>, you would have <span className="fst-italic fw-bold">{(this.state.currentCash).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</span> today.</p>
             </div>
             <div className="d-flex mt-5 justify-content-center">
-              <button className="btn btn-danger"onClick={this.reset}>Try Again</button>
+              <button className="btn btn-danger" onClick={this.reset}>Try Again</button>
             </div>
           </>;
   }
 
   render() {
     console.log(options);
-    if (this.state.coins === null && this.state.calculated === false) {
+    if (this.state.error === true) {
+      return <div className="fbackground mt-5 mx-auto">
+              <p className="text-center fomo-font">Oh no, the data you're looking for was not found</p>
+              <div className="d-flex mt-5 justify-content-center">
+                <button className="btn btn-danger" onClick={this.reset}>Click here to try again</button>
+              </div>
+            </div>;
+    } else if (this.state.coins === null && this.state.calculated === false) {
       return <>
             <div className="mt-5 d-flex justify-content-center">
                 <i className="fas fa-cog fa-spin big-text"></i>

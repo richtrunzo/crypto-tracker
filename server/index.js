@@ -3,6 +3,7 @@ const express = require('express');
 const staticMiddleware = require('./static-middleware');
 const fetch = require('node-fetch');
 const { response } = require('express');
+const ErrorMiddleware = require('./error-middleware');
 
 const app = express();
 
@@ -96,7 +97,7 @@ app.get('/api/news/:coin', (req, res) => {
     });
 });
 
-app.get('/api/date/:coin/:date', (req, res) => {
+app.get('/api/date/:coin/:date', (req, res, next) => {
   const { coin, date } = req.params;
   fetch(`https://api.coingecko.com/api/v3/coins/${coin}/history?date=${date}`, { method: 'GET' })
     .then(res => res.json())
@@ -132,7 +133,6 @@ app.get('/api/coinMarket/:coinMarket', (req, res) => {
   fetch(`https://api.coingecko.com/api/v3/coins/${coinMarket}/market_chart?vs_currency=usd&days=30&interval=daily`, { method: 'GET' })
     .then(res => res.json())
     .then(data => {
-      console.log(data);
       res.json(data);
     })
     .catch(err => {

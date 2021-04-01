@@ -5,6 +5,7 @@ import parseRoute from './lib/parse-route';
 import News from './pages/news';
 import Fomo from './pages/fomo';
 import Footer from './components/footer';
+import Error from './components/404';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -39,6 +40,12 @@ export default class App extends React.Component {
       return <>
               <Navbar />
               <Fomo />
+              <Footer />
+           </>;
+    } else if (this.state.route.path === 'error') {
+      return <>
+              <Navbar />
+              <Error />
               <Footer />
            </>;
     }

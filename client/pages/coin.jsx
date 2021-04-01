@@ -1,7 +1,7 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import getDate from '../lib/date-check';
-import Creatable from 'react-select/creatable';
+import Select from 'react-select';
 
 const lineData = {
   labels: [],
@@ -40,6 +40,7 @@ class Coin extends React.Component {
       coinId: null,
       currentCoin: null,
       coinPage: false,
+      error: false,
       coinsM: [],
       coinsV: [],
       renderType: 'm'
@@ -144,7 +145,6 @@ class Coin extends React.Component {
     fetch(`/api/coinval/${coinValue}`, { method: 'GET' })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         this.setState({ currentCoin: data });
       })
       .then(fetch(`/api/coinMarket/${coinMarket}`, { method: 'GET' })
@@ -172,36 +172,6 @@ class Coin extends React.Component {
         })
       );
 
-    // fetch(`https://api.coingecko.com/api/v3/coins/${this.state.coinId.value.toLowerCase().replace(/\s/g, '')}?tickers=true&market_data=true&community_data=true`, { method: 'GET' })
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     console.log(data);
-    //     this.setState({ currentCoin: data });
-    //   })
-    //   .then(fetch(`https://api.coingecko.com/api/v3/coins/${this.state.coinId.value.toLowerCase().replace(/\s/g, '')}/market_chart?vs_currency=usd&days=30&interval=daily`, { method: 'GET' })
-    //     .then(res => res.json())
-    //     .then(data => {
-    //       lineData.labels = [];
-    //       lineData.datasets[0].data = [];
-    //       for (let i = 0; i < data.prices.length; i++) {
-    //         for (let j = 0; j < data.prices[i].length; j++) {
-    //           if (j === 0) {
-    //             lineData.labels.push(getDate(data.prices[i][j]));
-    //           } else if (j === 1) {
-    //             lineData.datasets[0].data.push(data.prices[i][j]);
-    //           }
-    //         }
-    //       }
-    //       console.log(lineData);
-    //     })
-    //   )
-    //   .then(() => {
-    //     console.log(lineData);
-    //     this.setState({
-    //       coinPage: true,
-    //       coinId: null
-    //     });
-    //   });
   }
 
   onHandleChange(coinId) {
@@ -214,7 +184,7 @@ class Coin extends React.Component {
           <div className="d-flex justify-content-center mt-4">
           <form className="d-flex input-width justify-content-center" onSubmit={this.onFormSubmit}>
             {/* <input type="text" placeholder="Seach for Coins e.g 'bitcoin'" className="font input-width" onChange={this.onHandleChange}/> */}
-            <Creatable className="input-width" onChange={this.onHandleChange} value={coinId} options={options} isSearchable={true} />
+            <Select className="input-width" onChange={this.onHandleChange} value={coinId} options={options} isSearchable={true} />
             <button className="font btn btn-danger mx-2">Search</button>
           </form>
           <div className="d-flex input-width justify-content-center ">
@@ -243,7 +213,7 @@ class Coin extends React.Component {
           <div className="d-flex justify-content-center mt-4">
           <form className="font d-flex justify-content-center input-width" onSubmit={this.onFormSubmit}>
             {/* <input type="text" placeholder="Seach for Coins e.g 'bitcoin'" className="font input-width" onChange={this.onHandleChange}/> */}
-            <Creatable className="input-width" onChange={this.onHandleChange} value={coinId} options={options} isSearchable={true} />
+            <Select className="input-width" onChange={this.onHandleChange} value={coinId} options={options} isSearchable={true} />
             <button className="font btn btn-danger mx-3">Search</button>
           </form>
           <div className="input-width d-flex justify-content-center ">
