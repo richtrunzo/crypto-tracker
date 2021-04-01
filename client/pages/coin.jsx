@@ -98,7 +98,11 @@ class Coin extends React.Component {
     fetch(`/api/coin/${coin}`, { method: 'GET' })
       .then(res => res.json())
       .then(data => {
-        this.setState({ currentCoin: data });
+        if (data.error) {
+          this.setState({ error: true });
+        } else {
+          this.setState({ currentCoin: data });
+        }
       })
       .then(fetch(`/api/coins/${coin}`, { method: 'GET' })
         .then(res => res.json())
@@ -128,6 +132,7 @@ class Coin extends React.Component {
   back() {
     this.setState({
       coinPage: false,
+      error: false,
       rendertype: 'm'
     });
   }
@@ -145,7 +150,11 @@ class Coin extends React.Component {
     fetch(`/api/coinval/${coinValue}`, { method: 'GET' })
       .then(res => res.json())
       .then(data => {
-        this.setState({ currentCoin: data });
+        if (data.error) {
+          this.setState({ error: true });
+        } else {
+          this.setState({ currentCoin: data });
+        }
       })
       .then(fetch(`/api/coinMarket/${coinMarket}`, { method: 'GET' })
         .then(res => res.json())
@@ -226,11 +235,13 @@ class Coin extends React.Component {
         </div>
         <div className="d-flex flex-wrap justify-content-center mt-5">
           {this.state.coinsV.map((val, index) => {
-            return <div key={index} id={val.id} className="pointer mx-4 mt-3 mb-3 px-5 cbackground" onClick={this.toggleCoin}>
+            if (index > 0) {
+              return <div key={index} id={val.id} className="pointer mx-4 mt-3 mb-3 px-5 cbackground" onClick={this.toggleCoin}>
               <p className="pointer font text-center white-text" id={val.id} onClick={this.toggleCoin}>{val.symbol.toUpperCase()}</p>
               <img className="pointer mx-auto" id={val.id} onClick={this.toggleCoin} src={val.image} width="100"/>
               <p className="pointer font text-center white-text" id={val.id} onClick={this.toggleCoin}>{(val.current_price).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
             </div>;
+            }
           }) }
         </div>;
         </>;
@@ -274,7 +285,14 @@ class Coin extends React.Component {
   }
 
   render() {
-    if (this.state.renderType === 'm' && this.state.coinPage === false) {
+    if (this.state.error === true) {
+      return <div className="fbackground mt-5 mx-auto">
+              <p className="text-center fomo-font">Oh no, the data you're looking for was not found</p>
+              <div className="d-flex mt-5 justify-content-center">
+                <button className="btn btn-danger" onClick={this.back}>Click here to try again</button>
+              </div>
+            </div>;
+    } else if (this.state.renderType === 'm' && this.state.coinPage === false) {
       return this.renderMarket();
     } else if (this.state.renderType === 'v' && this.state.coinPage === false) {
       return this.renderVolume();
