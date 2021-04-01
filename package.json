@@ -9,7 +9,8 @@
     "start": "node server/index.js",
     "dev": "npm-run-all --silent --parallel dev:*",
     "dev:client": "webpack serve --mode=development",
-    "dev:server": "nodemon server/index.js"
+    "dev:server": "nodemon server/index.js",
+    "deploy" : "npm run build&&gh-pages -d build"
   },
   "husky": {
     "hooks": {
@@ -56,6 +57,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.22.0",
+    "gh-pages": "^3.1.0",
     "htmlhint": "^0.14.2",
     "husky": "^4.3.6",
     "lint-staged": "^10.5.3",
