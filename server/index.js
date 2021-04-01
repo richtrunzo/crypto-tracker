@@ -139,7 +139,7 @@ app.get('/api/coinMarket/:coinMarket', (req, res) => {
     });
 });
 
-app.listen(process.env.PORT, () => {
+app.listen(3000, () => {
   // eslint-disable-next-line no-console
-  console.log(`express server listening on port ${process.env.PORT}`);
+  console.log('express server listening on port 3000');
 });
