@@ -144,8 +144,6 @@ class Coin extends React.Component {
 
     const coinValue = this.state.coinId.value.toLowerCase().replace(/\s/g, '');
     const coinMarket = this.state.coinId.value.toLowerCase().replace(/\s/g, '');
-    console.log(coinValue);
-    console.log(coinMarket);
 
     fetch(`/api/coinval/${coinValue}`, { method: 'GET' })
       .then(res => res.json())
@@ -159,7 +157,6 @@ class Coin extends React.Component {
       .then(fetch(`/api/coinMarket/${coinMarket}`, { method: 'GET' })
         .then(res => res.json())
         .then(data => {
-          console.log(data);
           lineData.labels = [];
           lineData.datasets[0].data = [];
           for (let i = 0; i < data.prices.length; i++) {
@@ -173,7 +170,6 @@ class Coin extends React.Component {
           }
         })
         .then(() => {
-          console.log(lineData);
           this.setState({
             coinPage: true,
             coinId: null
@@ -192,7 +188,6 @@ class Coin extends React.Component {
     return <>
           <div className="d-flex justify-content-center mt-4">
           <form className="d-flex input-width justify-content-center" onSubmit={this.onFormSubmit}>
-            {/* <input type="text" placeholder="Seach for Coins e.g 'bitcoin'" className="font input-width" onChange={this.onHandleChange}/> */}
             <Select className="input-width" onChange={this.onHandleChange} value={coinId} options={options} isSearchable={true} />
             <button className="font btn btn-danger mx-2">Search</button>
           </form>
@@ -221,7 +216,6 @@ class Coin extends React.Component {
     return <>
           <div className="d-flex justify-content-center mt-4">
           <form className="font d-flex justify-content-center input-width" onSubmit={this.onFormSubmit}>
-            {/* <input type="text" placeholder="Seach for Coins e.g 'bitcoin'" className="font input-width" onChange={this.onHandleChange}/> */}
             <Select className="input-width" onChange={this.onHandleChange} value={coinId} options={options} isSearchable={true} />
             <button className="font btn btn-danger mx-3">Search</button>
           </form>
@@ -248,8 +242,6 @@ class Coin extends React.Component {
   }
 
   renderCoin() {
-    console.log(this.state.currentCoin);
-
     if (this.state.currentCoin === null) {
       return <>
             <div className="mt-5 d-flex justify-content-center">

@@ -40,7 +40,6 @@ export default class Fomo extends React.Component {
           };
           options.push(option);
         }
-        console.log(options);
       });
 
   }
@@ -58,7 +57,6 @@ export default class Fomo extends React.Component {
   }
 
   onFormSubmit(e) {
-    console.log(this.state.coin);
     e.preventDefault();
 
     const coin = this.state.coin.value.toLowerCase();
@@ -144,7 +142,6 @@ export default class Fomo extends React.Component {
   }
 
   render() {
-    console.log(options);
     if (this.state.error === true) {
       return <div className="fbackground mt-5 mx-auto">
               <p className="text-center fomo-font">Oh no, the data you're looking for was not found</p>

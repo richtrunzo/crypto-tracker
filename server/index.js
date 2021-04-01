@@ -27,7 +27,6 @@ app.get('/api/market', (req, res) => {
   fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=200&page=1&sparkline=false', { method: 'GET' })
     .then(res => res.json())
     .then(data => {
-      console.log(response.status);
       res.json(data);
     })
     .catch(err => {
@@ -129,7 +128,6 @@ app.get('/api/coinval/:coinValue', (req, res) => {
 
 app.get('/api/coinMarket/:coinMarket', (req, res) => {
   const { coinMarket } = req.params;
-  console.log('called');
   fetch(`https://api.coingecko.com/api/v3/coins/${coinMarket}/market_chart?vs_currency=usd&days=30&interval=daily`, { method: 'GET' })
     .then(res => res.json())
     .then(data => {
