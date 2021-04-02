@@ -230,7 +230,7 @@ class Coin extends React.Component {
         <div className="d-flex flex-wrap justify-content-center mt-5">
           {this.state.coinsV.map((val, index) => {
             if (index > 0) {
-              return <div key={val.id} id={val.id} className="pointer mx-4 mt-3 mb-3 px-5 cbackground" onClick={this.toggleCoin}>
+              return <div key={val.id} id={val.id} className="pointer mx-4 mt-3 mb-3 px-5 cbackground animate__animated animate__fadeInUp" onClick={this.toggleCoin}>
               <p className="pointer font text-center white-text" id={val.id} onClick={this.toggleCoin}>{val.symbol.toUpperCase()}</p>
               <img className="pointer mx-auto" id={val.id} onClick={this.toggleCoin} src={val.image} width="100"/>
               <p className="pointer font text-center white-text" id={val.id} onClick={this.toggleCoin}>{(val.current_price).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</p>
@@ -254,7 +254,7 @@ class Coin extends React.Component {
     } else {
       return <>
             <div className="d-flex justify-content-center mt-4 flex-wrap">
-                <i className="far fa-caret-square-left mt-5 red-dark back-btn mx-5" onClick={this.back}></i>
+                <i className="far fa-caret-square-left mt-5 red-dark back-btn mx-5 pointer" onClick={this.back}></i>
               <div>
                 <img className="mb-5 animate__animated animate__zoomIn" src={this.state.currentCoin.image.large}/>
               </div>
