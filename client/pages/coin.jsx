@@ -41,6 +41,7 @@ class Coin extends React.Component {
       currentCoin: null,
       coinPage: false,
       error: false,
+      loading: false,
       coinsM: [],
       coinsV: [],
       renderType: 'm'
@@ -90,7 +91,11 @@ class Coin extends React.Component {
   }
 
   toggleCoin() {
-    this.setState({ coinId: event.target.id });
+    this.setState({
+      coinId: event.target.id,
+      loading: true
+    });
+
     lineData.datasets[0].label = event.target.id + ' one month chart';
 
     const coin = event.target.id;
@@ -98,6 +103,7 @@ class Coin extends React.Component {
     fetch(`/api/coin/${coin}`, { method: 'GET' })
       .then(res => res.json())
       .then(data => {
+        console.log(data);
         if (data.error) {
           this.setState({ error: true });
         } else {
@@ -123,7 +129,8 @@ class Coin extends React.Component {
       .then(() => {
         if (lineData.datasets[0].data.length !== 0) {
           this.setState({
-            coinPage: true
+            coinPage: true,
+            loading: false
           });
         }
       });
@@ -133,12 +140,16 @@ class Coin extends React.Component {
     this.setState({
       coinPage: false,
       error: false,
+      loading: false,
       rendertype: 'm'
     });
   }
 
   onFormSubmit(e) {
     e.preventDefault();
+    this.setState({
+      loading: true
+    });
 
     lineData.datasets[0].label = this.state.coinId.value + ' one month chart';
 
@@ -172,6 +183,7 @@ class Coin extends React.Component {
         .then(() => {
           this.setState({
             coinPage: true,
+            loading: false,
             coinId: null
           });
         })
@@ -276,6 +288,17 @@ class Coin extends React.Component {
     }
   }
 
+  isLoading() {
+    return <>
+            <div className="mt-5 d-flex justify-content-center">
+                <i className="fas fa-cog fa-spin big-text"></i>
+            </div>
+            <div className="mt-5 d-flex justify-content-center">
+                <p className="text">Loading...</p>
+            </div>;
+          </>;
+  }
+
   render() {
     if (this.state.error === true) {
       return <div className="fbackground mt-5 mx-auto">
@@ -284,6 +307,8 @@ class Coin extends React.Component {
                 <button className="btn btn-danger" onClick={this.back}>Click here to try again</button>
               </div>
             </div>;
+    } else if (this.state.loading === true && this.state.coinPage === false) {
+      return this.isLoading();
     } else if (this.state.renderType === 'm' && this.state.coinPage === false) {
       return this.renderMarket();
     } else if (this.state.renderType === 'v' && this.state.coinPage === false) {
