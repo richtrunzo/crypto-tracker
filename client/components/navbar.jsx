@@ -35,7 +35,7 @@ function Navbar(props) {
 
   const Burger = () => {
     if (page === false) {
-      return <i onClick={onClick} className="mt-5 text-center col-4 icon-size fas fa-bars"></i>;
+      return <i onClick={onClick} className="pointer mt-5 text-center col-4 icon-size fas fa-bars"></i>;
     } else {
       return <>
       <div className="col-4 mt-5 text-center">
