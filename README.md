@@ -20,6 +20,6 @@ A full-stack web application where users can view cryptocurreny prices and news 
 
 <br></br>
 
-#### Demo:
+### Demo:
 
 ![alt text](https://media0.giphy.com/media/MMIyFFbeDKe4Dre98v/giphy.gif "Functionality of the app")
