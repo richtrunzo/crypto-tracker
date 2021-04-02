@@ -200,7 +200,7 @@ class Coin extends React.Component {
     return <>
           <div className="d-flex justify-content-center mt-4">
           <form className="d-flex input-width justify-content-center" onSubmit={this.onFormSubmit}>
-            <Select className="input-width" onChange={this.onHandleChange} value={coinId} options={options} isSearchable={true} />
+            <Select className="input-width" onChange={this.onHandleChange} value={coinId} placeholder="Search for Coins" options={options} isSearchable={true} />
             <button className="font btn btn-danger mx-2">Search</button>
           </form>
           <div className="d-flex input-width justify-content-center ">
@@ -228,7 +228,7 @@ class Coin extends React.Component {
     return <>
           <div className="d-flex justify-content-center mt-4">
           <form className="font d-flex justify-content-center input-width" onSubmit={this.onFormSubmit}>
-            <Select className="input-width" onChange={this.onHandleChange} value={coinId} options={options} isSearchable={true} />
+            <Select className="input-width" onChange={this.onHandleChange} value={coinId} placeholder="Search for Coins" options={options} isSearchable={true} />
             <button className="font btn btn-danger mx-3">Search</button>
           </form>
           <div className="input-width d-flex justify-content-center ">
@@ -294,7 +294,7 @@ class Coin extends React.Component {
                 <i className="fas fa-cog fa-spin big-text"></i>
             </div>
             <div className="mt-5 d-flex justify-content-center">
-                <p className="text">Loading...</p>
+                <p className="text text-center">Loading all of the data<br></br>This might take a moment...</p>
             </div>;
           </>;
   }
