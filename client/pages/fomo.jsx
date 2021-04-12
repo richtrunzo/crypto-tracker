@@ -1,6 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import priceCalc from '../lib/fomo-calculate';
 import Select from 'react-select';
+
+// function Fomo(props) {
+//   let [coins, setCoins] = useState(null)
+//   let [calculated, setCalc] = useState(false)
+//   let [investment, setInvestment] = useState(null)
+//   let [coin, setCoin] = useState(null)
+//   let [date, setDate] = useState(null)
+//   let [error, setError] = useState(false)
+//   let [oldPrice, setOld] = useState(null)
+//   let [currentCash, setCurrentCash] = useState(null)
+
+//   const options = [];
+
+//   useEffect(() => {
+//      fetch('/api/market', { method: 'GET' })
+//       .then(res => res.json())
+//       .then(data => {
+//         // this.setState({ coins: data });
+//         setCoins(data)
+//       })
+//       .then(() => {
+//         for (let i = 0; i < this.state.coins.length; i++) {
+//           const option = {
+//             value: this.state.coins[i].id,
+//             label: this.state.coins[i].name
+//           };
+//           options.push(option);
+//         }
+//       });
+
+//   }, [])
+
+// }
 
 const options = [];
 
